@@ -9,11 +9,14 @@ Study app for private pilot students. The content and interface live in one page
 | `pilot-acronyms.html` | The source for everything: content, styling, and behavior |
 | `../Pilot-Acronyms.apk` | The latest Android build, written outside the repository |
 | `assets/icon-source.webp` | The original icon artwork |
-| `scripts/build-www.mjs` | Builds `www/` and `privacy-policy.html` from the page, with fonts bundled for offline use |
+| `scripts/build-www.mjs` | Builds `www/`, `privacy-policy.html`, and `support.html` from the page, with fonts bundled for offline use |
 | `scripts/build-icon.mjs` | Builds every Android and iPhone icon, the iPhone launch screen, the store icon, and the logo in the page's header |
 | `scripts/build-apk.mjs` | Runs the web build, syncs to Android, and builds the APK |
+| `scripts/store-shots.mjs` | Takes the App Store screenshots of `www/` in headless Chrome |
 | `store/icon-512.png` | The Google Play icon |
-| `privacy-policy.html` | The public privacy policy page, generated from the page |
+| `store/screenshots/` | App Store screenshots: 6.9-inch iPhone and 13-inch iPad |
+| `store/listing.md` | Store listing text: subtitle, keywords, description, and URLs |
+| `privacy-policy.html`, `support.html` | The public privacy policy and support pages, generated from the page and served by GitHub Pages |
 | `android/` | The Android project |
 | `ios/` | The iPhone and iPad project, built in the cloud by Codemagic |
 | `codemagic.yaml` | The Codemagic build workflows |
@@ -34,7 +37,7 @@ To change the icon, replace `assets/icon-source.webp`, update the crop measureme
 npm run icons
 ```
 
-Republish the web chart after any change to the page.
+Republish the web chart after any change to the page. To retake the store screenshots, run `npm run web`, then `node scripts/store-shots.mjs`.
 
 ## iPhone and iPad builds
 

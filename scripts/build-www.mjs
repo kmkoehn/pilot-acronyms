@@ -57,30 +57,52 @@ ${page.replace(/<div class="app">/, "</head>\n<body>\n<div class=\"app\">")}
 `);
 console.log("www/index.html written");
 
-// Public copy of the in-app privacy policy, for the Play Console's privacy policy URL.
-const privacySrc = page.match(/const PRIVACY = (\{[\s\S]*?\n\});/);
-if (!privacySrc) throw new Error("PRIVACY block not found");
-const privacy = new Function(`return ${privacySrc[1]}`)();
-writeFileSync(join(root, "privacy-policy.html"), `<!doctype html>
+// Public pages for the store listings, served by GitHub Pages from the repository root.
+const REPO = "https://github.com/kmkoehn/pilot-acronyms";
+const publicPage = (file, title, body) => {
+  writeFileSync(join(root, file), `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy | Pilot Acronyms</title>
+<title>${title} | Pilot Acronyms</title>
 <style>
 :root{color-scheme:light dark}
 body{margin:0 auto;max-width:68ch;padding:32px 16px 64px;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
 h1{font-size:1.75rem;line-height:1.2;margin:0 0 4px}
 h2{font-size:1.05rem;margin:24px 0 4px}
-p{margin:0 0 10px}
+p,ul{margin:0 0 10px}
 </style>
 </head>
 <body>
-<h1>Privacy Policy</h1>
-<p>Pilot Acronyms for iPhone and Android. Effective ${privacy.effective}.</p>
-<p>${privacy.intro}</p>
-${privacy.sections.map(([h, p]) => `<h2>${h}</h2>\n<p>${p}</p>`).join("\n")}
+${body}
 </body>
 </html>
 `);
-console.log("privacy-policy.html written");
+  console.log(`${file} written`);
+};
+
+// The in-app privacy policy, for the stores' privacy policy URL.
+const privacySrc = page.match(/const PRIVACY = (\{[\s\S]*?\n\});/);
+if (!privacySrc) throw new Error("PRIVACY block not found");
+const privacy = new Function(`return ${privacySrc[1]}`)();
+publicPage("privacy-policy.html", "Privacy Policy", `<h1>Privacy Policy</h1>
+<p>Pilot Acronyms for iPhone, iPad, and Android. Effective ${privacy.effective}.</p>
+<p>${privacy.intro}</p>
+${privacy.sections.map(([h, p]) => `<h2>${h}</h2>\n<p>${p}</p>`).join("\n")}`);
+
+// The stores' support URL.
+publicPage("support.html", "Support", `<h1>Pilot Acronyms support</h1>
+<p>Pilot Acronyms is a study aid for private pilot students, for iPhone, iPad, and Android. It explains the acronyms, mnemonics, and key numbers that come up in ground school and on the oral exam.</p>
+<h2>Report an error or ask a question</h2>
+<p>Open an issue at <a href="${REPO}/issues">${REPO}/issues</a>. Please include the section and card name, what it says, and where the correct information comes from, such as a 14 CFR section or an AIM paragraph.</p>
+<h2>Common questions</h2>
+<ul>
+<li><strong>Does it need an internet connection?</strong> No. Everything works offline. Links to official websites open in your browser.</li>
+<li><strong>Do I need an account?</strong> No. The app has no accounts, ads, or tracking.</li>
+<li><strong>How do I hide the answers to quiz myself?</strong> Turn on Quiz in the header, then tap a line to reveal its answer.</li>
+<li><strong>How do I find something fast?</strong> Use the search box. It searches every section and the abbreviation decoder.</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>Pilot Acronyms is an independent study aid. It is not affiliated with or endorsed by the FAA or any other government agency. It does not replace your flight instructor, your aircraft's POH or AFM, or an official weather briefing, and it must not be used for flight planning or in flight.</p>
+<p><a href="privacy-policy.html">Privacy policy</a></p>`);
