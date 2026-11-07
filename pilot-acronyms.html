@@ -61,7 +61,7 @@ a { color: var(--link); }
 .side { display: none; }
 @media (min-width: 960px) {
   .side {
-    display: flex; flex-direction: column; gap: 22px; position: sticky; top: 0; height: 100vh; overflow-y: auto; box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 22px; position: sticky; top: env(safe-area-inset-top, 0px); height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); overflow-y: auto; box-sizing: border-box;
     padding-block: 22px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: 14px;
     background: var(--surface); border-right: 1px solid var(--line);
   }

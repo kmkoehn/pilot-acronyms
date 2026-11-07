@@ -1,6 +1,6 @@
 # Pilot Acronyms
 
-Study app for private pilot students. The content and interface live in one page, which is published on the web and wrapped into Android and iPhone apps with Capacitor.
+Study app for private pilot students. The content and interface live in one page, which is published on the web and wrapped into Android and iPhone/iPad apps with Capacitor.
 
 ## Where things are
 
@@ -15,7 +15,7 @@ Study app for private pilot students. The content and interface live in one page
 | `store/icon-512.png` | The Google Play icon |
 | `privacy-policy.html` | The public privacy policy page, generated from the page |
 | `android/` | The Android project |
-| `ios/` | The iPhone project, built in the cloud by Codemagic |
+| `ios/` | The iPhone and iPad project, built in the cloud by Codemagic |
 | `codemagic.yaml` | The Codemagic build workflows |
 
 `www/` and everything under `android/**/build` are generated, so don't edit them by hand.
@@ -36,11 +36,11 @@ npm run icons
 
 Republish the web chart after any change to the page.
 
-## iPhone builds
+## iPhone and iPad builds
 
 iPhone apps can only be built on a Mac, so Codemagic builds them from this repository. Run `npx cap sync ios` after changing the page or icons, and commit the result. The iPhone version number comes from `package.json`.
 
-- **iOS simulator preview** builds the app for the iOS simulator and saves light and dark screenshots. It needs no Apple account.
+- **iOS simulator preview** builds the app for the iOS simulator and saves light and dark screenshots on an iPhone and an iPad. It needs no Apple account.
 - **iOS TestFlight** signs the app and uploads it to TestFlight. Before it can run:
   1. Join the Apple Developer Program.
   2. Register the bundle ID `com.kmkoehn.pilotacronyms` and create the app in App Store Connect.

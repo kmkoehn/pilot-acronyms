@@ -28,35 +28,42 @@ workflows:
         script: |
           set -e
           mkdir -p build/screenshots
-          # Pick the newest iPhone Pro simulator, or any iPhone if there's no Pro.
-          UDID=$(xcrun simctl list devices available -j | node -e '
-            let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
-              const all = Object.entries(JSON.parse(s).devices)
-                .filter(([runtime]) => runtime.includes("iOS"))
-                .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
-              const phones = all.flatMap(([, list]) => list).filter(d => d.name.startsWith("iPhone"));
-              const pick = phones.filter(d => / Pro$/.test(d.name)).pop() || phones.pop();
-              console.log(pick.udid);
-            });')
-          xcrun simctl boot "$UDID"
-          xcrun simctl bootstatus "$UDID" -b
-          xcrun simctl status_bar "$UDID" override --time 9:41 --batteryState charged --batteryLevel 100
           APP=$(find build/derived/Build/Products -maxdepth 2 -name "App.app" | head -1)
-          xcrun simctl install "$UDID" "$APP"
-          # The first launch on a fresh simulator is slow, so open the app once before taking screenshots.
-          xcrun simctl launch "$UDID" com.kmkoehn.pilotacronyms
-          sleep 20
-          xcrun simctl terminate "$UDID" com.kmkoehn.pilotacronyms || true
-          shoot() {
-            xcrun simctl launch "$UDID" com.kmkoehn.pilotacronyms
-            sleep 12
-            xcrun simctl io "$UDID" screenshot "build/screenshots/$1.png"
-            xcrun simctl terminate "$UDID" com.kmkoehn.pilotacronyms || true
+          ID=com.kmkoehn.pilotacronyms
+          # Prints the newest simulator whose name starts with $1, preferring names that match $2.
+          pick() {
+            xcrun simctl list devices available -j | KIND="$1" PREFER="$2" node -e '
+              let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
+                const all = Object.entries(JSON.parse(s).devices)
+                  .filter(([runtime]) => runtime.includes("iOS"))
+                  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
+                const list = all.flatMap(([, l]) => l).filter(d => d.name.startsWith(process.env.KIND));
+                const pick = list.filter(d => new RegExp(process.env.PREFER).test(d.name)).pop() || list.pop();
+                console.log(pick.udid);
+              });'
           }
-          xcrun simctl ui "$UDID" appearance light
-          shoot light
-          xcrun simctl ui "$UDID" appearance dark
-          shoot dark
+          # Boots a simulator, installs the app, and saves light and dark screenshots named after $2.
+          shoot_device() {
+            UDID="$1"
+            xcrun simctl boot "$UDID"
+            xcrun simctl bootstatus "$UDID" -b
+            xcrun simctl status_bar "$UDID" override --time 9:41 --batteryState charged --batteryLevel 100
+            xcrun simctl install "$UDID" "$APP"
+            # The first launch on a fresh simulator is slow, so open the app once before taking screenshots.
+            xcrun simctl launch "$UDID" $ID
+            sleep 20
+            xcrun simctl terminate "$UDID" $ID || true
+            for mode in light dark; do
+              xcrun simctl ui "$UDID" appearance $mode
+              xcrun simctl launch "$UDID" $ID
+              sleep 12
+              xcrun simctl io "$UDID" screenshot "build/screenshots/$2-$mode.png"
+              xcrun simctl terminate "$UDID" $ID || true
+            done
+            xcrun simctl shutdown "$UDID"
+          }
+          shoot_device "$(pick iPhone ' Pro$')" iphone
+          shoot_device "$(pick iPad '13-inch')" ipad
     artifacts:
       - build/screenshots/*.png
 
