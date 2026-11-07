@@ -44,8 +44,9 @@ iPhone apps can only be built on a Mac, so Codemagic builds them from this repos
 - **iOS TestFlight** signs the app and uploads it to TestFlight. Before it can run:
   1. Join the Apple Developer Program.
   2. Register the bundle ID `com.kmkoehn.pilotacronyms` and create the app in App Store Connect.
-  3. Create an App Store Connect API key, add it in Codemagic under Team integrations, and name it `Pilot Acronyms` (the name `codemagic.yaml` uses).
-  4. Turn on automatic code signing for the key in Codemagic, so it can create the certificate and provisioning profile.
+  3. Create an App Store Connect API key with the App Manager role, and add it in Codemagic under Developer Portal > Manage keys with the name `Pilot Acronyms` (the name `codemagic.yaml` uses).
+  4. In Codemagic's Code signing identities, generate an Apple Distribution certificate with that key.
+  5. In the Apple Developer portal, create an App Store Connect provisioning profile for the bundle ID using that certificate, then fetch it in Codemagic's Code signing identities.
 
 ## Sources
 
