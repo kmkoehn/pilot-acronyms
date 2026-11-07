@@ -44,10 +44,10 @@ workflows:
           APP=$(find build/derived/Build/Products -maxdepth 2 -name "App.app" | head -1)
           xcrun simctl install "$UDID" "$APP"
           shoot() {
-            xcrun simctl launch "$UDID" com.kylek.pilotacronyms
+            xcrun simctl launch "$UDID" com.kmkoehn.pilotacronyms
             sleep 10
             xcrun simctl io "$UDID" screenshot "build/screenshots/$1.png"
-            xcrun simctl terminate "$UDID" com.kylek.pilotacronyms || true
+            xcrun simctl terminate "$UDID" com.kmkoehn.pilotacronyms || true
           }
           xcrun simctl ui "$UDID" appearance light
           shoot light
@@ -67,7 +67,7 @@ workflows:
       node: 22
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.kylek.pilotacronyms
+        bundle_identifier: com.kmkoehn.pilotacronyms
     scripts:
       - name: Install dependencies
         script: npm ci
