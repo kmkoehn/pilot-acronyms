@@ -77,7 +77,7 @@ p{margin:0 0 10px}
 </head>
 <body>
 <h1>Privacy Policy</h1>
-<p>Pilot Acronyms for Android. Effective ${privacy.effective}.</p>
+<p>Pilot Acronyms for iPhone and Android. Effective ${privacy.effective}.</p>
 <p>${privacy.intro}</p>
 ${privacy.sections.map(([h, p]) => `<h2>${h}</h2>\n<p>${p}</p>`).join("\n")}
 </body>
