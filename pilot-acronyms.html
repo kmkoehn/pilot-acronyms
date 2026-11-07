@@ -1,0 +1,1075 @@
+<title>Pilot Acronyms</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: study app. Sidebar of ACS-ordered sections on wide screens, sticky search + tab strip on phones.
+   One section at a time; each memory aid is a collapsible card. Colors meet WCAG 2.1 AA in both themes.
+   Palette comes from the app icon: cobalt #01468d, deep navy, and silver. Accents are gold in light mode and amber in dark mode. */
+:root {
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --surface-2: #f3f6fa;
+  --ink: #0a1f44;
+  --muted: #475670;
+  --line: #d3dbe7;
+  --control: #66789a;
+  --accent: #8a5a00;
+  --link: #1257b0;
+  --link-bg: #e4edf9;
+  --ref: #7a5000;
+  --ref-bg: #f7efdc;
+  --swatch-edge: rgba(0, 0, 0, .28);
+  --chart-blue: #1f5fbf;
+  --chart-magenta: #b5258f;
+  --sel-bg: #01468d;
+  --sel-fg: #ffffff;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1420; --surface: #131d2b; --surface-2: #1a2636; --ink: #e6edf7; --muted: #aab4c3;
+    --line: #26344a; --control: #7d93ba; --accent: #f4b740; --link: #9cc6ff; --link-bg: #1b2a40; --ref: #f4b740; --ref-bg: #1d2a3c;
+    --swatch-edge: rgba(255, 255, 255, .4); --chart-blue: #6f9cf2; --chart-magenta: #e468c4;
+    --sel-bg: #c9d5e4; --sel-fg: #001631; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1420; --surface: #131d2b; --surface-2: #1a2636; --ink: #e6edf7; --muted: #aab4c3;
+  --line: #26344a; --control: #7d93ba; --accent: #f4b740; --link: #9cc6ff; --link-bg: #1b2a40; --ref: #f4b740; --ref-bg: #1d2a3c;
+    --swatch-edge: rgba(255, 255, 255, .4); --chart-blue: #6f9cf2; --chart-magenta: #e468c4;
+  --sel-bg: #c9d5e4; --sel-fg: #001631; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+:focus-visible { outline: 3px solid var(--link); outline-offset: 2px; }
+a { color: var(--link); }
+
+.app { display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 960px) { .app { grid-template-columns: 264px minmax(0, 1fr); } }
+
+/* Brand */
+.brand { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.brand img { width: 40px; height: 40px; flex: none; border-radius: 9px; }
+.brand b { display: block; font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: .02em; }
+.brand small { display: block; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-top: 4px; }
+
+/* Sidebar (wide screens) */
+.side { display: none; }
+@media (min-width: 960px) {
+  .side {
+    display: flex; flex-direction: column; gap: 22px; position: sticky; top: 0; height: 100vh; overflow-y: auto; box-sizing: border-box;
+    padding-block: 22px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: 14px;
+    background: var(--surface); border-right: 1px solid var(--line);
+  }
+}
+.side h2 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px 10px; }
+.side ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.side a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: 14.5px; }
+.side a:hover { background: var(--surface-2); }
+.side a .n { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.side a[aria-current="page"] { background: var(--sel-bg); color: var(--sel-fg); font-weight: 600; }
+.side a[aria-current="page"] .n { color: var(--sel-fg); }
+.side .about { margin-top: auto; font-size: 13px; color: var(--muted); padding: 0 10px; }
+
+/* Sticky bar: search, quiz, and section tabs on phones */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar-in { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar .brand { flex: 1 1 100%; }
+@media (min-width: 960px) { .bar .brand { display: none; } .bar-in { padding-block: 14px; } }
+.search { flex: 1 1 150px; min-width: 0; position: relative; max-width: 640px; }
+.search svg { position: absolute; left: 12px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+#q { width: 100%; box-sizing: border-box; font: inherit; min-height: 44px; padding: 9px 12px 9px 38px; border: 1.5px solid var(--control); border-radius: 8px; background: var(--surface); color: var(--ink); }
+#q::placeholder { color: var(--muted); opacity: 1; }
+.btn { font: 600 14px var(--body); min-height: 44px; padding: 8px 14px; border-radius: 8px; border: 1.5px solid var(--control); background: var(--surface); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.btn:hover { background: var(--surface-2); }
+#quiz[aria-pressed="true"] { background: var(--sel-bg); border-color: var(--sel-bg); color: var(--sel-fg); }
+.dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid currentColor; box-sizing: border-box; }
+#quiz[aria-pressed="true"] .dot { background: currentColor; }
+.tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-block: 0 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); scroll-padding-inline: 16px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs a { flex: none; display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--control); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.tabs a[aria-current="page"] { background: var(--sel-bg); border-color: var(--sel-bg); color: var(--sel-fg); }
+@media (min-width: 960px) { .tabs { display: none; } }
+/* A phone on its side has too little height to keep the bar on screen. */
+@media (orientation: landscape) and (max-height: 520px) { .bar { position: static; } }
+
+/* Main content */
+main { box-sizing: border-box; max-width: 1120px; padding-block: 22px 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 960px) { main { padding-left: 32px; padding-right: max(32px, env(safe-area-inset-right, 0px)); padding-top: 28px; } }
+main.searching .sec:not([hidden]) ~ .sec { margin-top: 36px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 16px; margin-bottom: 14px; }
+.sec-head h2 { font-family: var(--display); font-size: clamp(28px, 4.2vw, 40px); line-height: 1.02; font-weight: 700; text-transform: uppercase; letter-spacing: .015em; margin: 0; text-wrap: balance; }
+.sec-meta { font-family: var(--mono); font-size: 12.5px; color: var(--accent); margin: 6px 0 0; letter-spacing: .03em; }
+.results { font-size: 14px; color: var(--muted); margin: 0 0 18px; }
+.results strong { color: var(--ink); font-weight: 600; }
+main.searching .expand, main.searching .pager { display: none; }
+
+.cards { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+.card.loose { align-self: start; }
+@media (min-width: 760px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card.wide { grid-column: 1 / -1; }
+details.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+details.card[open] { border-color: var(--control); }
+summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 14px 16px; cursor: pointer; border-radius: 10px; }
+summary::-webkit-details-marker { display: none; }
+summary:hover { background: var(--surface-2); }
+details[open] > summary { border-radius: 10px 10px 0 0; }
+.k { display: block; font-family: var(--display); font-weight: 700; font-size: 27px; line-height: 1.05; letter-spacing: .05em; }
+.k.name { font-size: 21px; letter-spacing: .02em; text-transform: uppercase; }
+.sub { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; margin-top: 4px; color: var(--muted); font-size: 13.5px; line-height: 1.35; }
+.ref { font-family: var(--mono); font-size: 12px; color: var(--ref); background: var(--ref-bg); padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+.chev { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid var(--control); color: var(--ink); transition: transform .2s ease; }
+.chev svg { width: 14px; height: 14px; }
+details[open] .chev { transform: rotate(180deg); }
+.body { padding: 2px 16px 16px; }
+
+ul.ac, ul.kv { list-style: none; margin: 0; padding: 0; }
+ul.ac li, ul.kv li { display: grid; gap: 12px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); }
+ul.ac li { grid-template-columns: 26px minmax(0, 1fr); }
+ul.kv li { grid-template-columns: minmax(84px, 36%) minmax(0, 1fr); }
+ul.kv li > span:first-child { font-weight: 600; font-size: 14px; }
+.ltr { font-family: var(--display); font-weight: 700; font-size: 25px; line-height: 1; color: var(--accent); text-align: center; }
+.x { min-width: 0; }
+.x b { font-weight: 600; }
+.x small { display: block; color: var(--muted); font-size: 13.5px; line-height: 1.4; margin-top: 1px; }
+.x a { color: var(--link); font-family: var(--mono); font-size: 13.5px; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 2px; }
+.note { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 8px; }
+.tw { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th { font-family: var(--mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; text-align: left; color: var(--muted); border-bottom: 1.5px solid var(--ink); padding: 6px 8px; }
+td { border-bottom: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+table.mono td:first-child { font-family: var(--mono); font-weight: 500; color: var(--accent); }
+
+.gl { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 6px 16px 10px; }
+.gi { padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.gi b { display: block; font-family: var(--mono); font-weight: 500; color: var(--accent); }
+.gi span { color: var(--muted); }
+
+.pager { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.pager a { display: inline-flex; flex-direction: column; gap: 2px; min-width: 0; padding: 10px 14px; border: 1.5px solid var(--control); border-radius: 8px; background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 600; }
+.pager a small { font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.pager a.next { margin-left: auto; text-align: right; }
+.pager a:hover { background: var(--surface-2); }
+footer { box-sizing: border-box; max-width: 1120px; margin-top: 28px; padding-block: 16px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
+@media (min-width: 960px) { footer { padding-left: 32px; } }
+footer p { margin: 0; max-width: 80ch; }
+
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px var(--swatch-edge); vertical-align: -1px; margin-right: 7px; }
+.sw + .sw { margin-left: -3px; }
+.sw-line { display: inline-block; width: 22px; border-top: 3px solid var(--c); vertical-align: 4px; margin-right: 7px; }
+.sw-line.dash { border-top-style: dashed; }
+.sw-fade { display: inline-block; width: 22px; height: 9px; border-radius: 2px; background: linear-gradient(90deg, var(--c), transparent); margin-right: 7px; }
+.sw-hatch { display: inline-block; width: 22px; height: 9px; border-top: 2px solid var(--c); background: repeating-linear-gradient(135deg, var(--c) 0 2px, transparent 2px 5px); margin-right: 7px; }
+.legal p { margin: 0 0 10px; max-width: 72ch; }
+.legal h4 { font: 600 14.5px/1.4 var(--body); margin: 14px 0 3px; }
+.legal ul { list-style: none; margin: 0; padding: 0; }
+.legal li { padding: 7px 0; border-top: 1px solid var(--line); }
+.legal a { text-underline-offset: 2px; }
+footer a { color: var(--link); font-weight: 600; text-underline-offset: 2px; }
+body.quiz .q { filter: blur(6px); user-select: none; transition: filter .15s; }
+body.quiz .qrow { cursor: pointer; }
+body.quiz .qrow.shown .q { filter: none; user-select: auto; }
+@media (prefers-reduced-motion: reduce) { .chev, body.quiz .q { transition: none; } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<div class="app">
+  <aside class="side">
+    <div class="brand" data-brand></div>
+    <nav aria-label="Sections"><h2>Sections</h2><ul id="sideNav"></ul></nav>
+    <p class="about">Tap a card to open it. Quiz mode hides answers until you tap a line.</p>
+  </aside>
+  <div>
+    <header class="bar">
+      <div class="bar-in">
+        <div class="brand" data-brand></div>
+        <div class="search" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+          <label class="sr" for="q">Search all sections</label>
+          <input id="q" type="search" placeholder="Search: AIRMET, 91.205" autocomplete="off">
+        </div>
+        <button id="quiz" class="btn" type="button" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span>Quiz mode</span></button>
+      </div>
+      <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+    </header>
+    <main id="main"></main>
+    <footer><p>Independent study aid, not affiliated with or endorsed by the FAA or any other government agency. <a href="#about" data-go="about">Disclaimer, sources &amp; privacy policy</a>. Regulations change: confirm details against the current 14 CFR, AIM, PHAK, your POH, and the Private Pilot ACS before your checkride. Mnemonics vary between schools; know what each letter means, not just the word.</p></footer>
+  </div>
+</div>
+
+<script>
+// Study content, one object per section.
+const S = [
+{ id: "aircraft", title: "Aircraft & pilot documents", acs: "ACS I.A · I.B", items: [
+  { t: "acro", k: "ARROW", h: "Documents that must be on board", ref: "91.203 · 91.9", rows: [
+    ["A", "Airworthiness certificate", "Displayed where passengers and crew can read it"],
+    ["R", "Registration certificate", "Valid for 7 years"],
+    ["R", "Radio station license", "Only for international flights (FCC)"],
+    ["O", "Operating limitations", "AFM/POH, placards, instrument markings"],
+    ["W", "Weight & balance data", "Current, for this specific airplane"]],
+    note: "You carry: pilot certificate, medical (or BasicMed paperwork), and government photo ID." },
+  { t: "acro", k: "AV1ATE", h: "Required inspections", ref: "91.409–.413 · 91.207 · 91.171", rows: [
+    ["A", "Annual", "Every 12 calendar months"],
+    ["V", "VOR check", "Every 30 days, IFR only"],
+    ["1", "100-hour", "If carrying people for hire or giving flight instruction for hire in an aircraft the CFI provides. May overfly 10 hr only to reach a place to do it."],
+    ["A", "Altimeter / pitot-static", "Every 24 calendar months, IFR in controlled airspace"],
+    ["T", "Transponder", "Every 24 calendar months"],
+    ["E", "ELT", "Every 12 calendar months. Replace battery after 1 cumulative hour of use or 50% of its useful life."]],
+    note: "Also confirm all Airworthiness Directives (ADs) are complied with, including recurring ones. The maintenance logbooks are your proof." },
+  { t: "acro", k: "A TOMATO FLAMES", h: "Equipment required for VFR day", ref: "91.205(b)", rows: [
+    ["A", "Airspeed indicator", ""],
+    ["T", "Tachometer", "For each engine"],
+    ["O", "Oil pressure gauge", "Each engine using a pressure system"],
+    ["M", "Manifold pressure gauge", "Each altitude engine"],
+    ["A", "Altimeter", ""],
+    ["T", "Temperature gauge", "Each liquid-cooled engine"],
+    ["O", "Oil temperature gauge", "Each air-cooled engine"],
+    ["F", "Fuel gauge", "Shows quantity in each tank"],
+    ["L", "Landing gear position indicator", "Retractable gear only"],
+    ["A", "Anticollision lights", "Aircraft certificated after March 11, 1996"],
+    ["M", "Magnetic direction indicator", "The compass"],
+    ["E", "ELT", "Per 91.207"],
+    ["S", "Safety belts", "Shoulder harnesses for front seats if built after July 18, 1978"]],
+    note: "Flying for hire over water beyond power-off gliding distance from shore adds flotation gear and a pyrotechnic signaling device." },
+  { t: "acro", k: "FLAPS", h: "Add these for VFR night", ref: "91.205(c)", rows: [
+    ["F", "Fuses", "One spare set, reachable in flight (if the airplane uses fuses)"],
+    ["L", "Landing light", "Only if operated for hire"],
+    ["A", "Anticollision lights", "Approved system"],
+    ["P", "Position lights", "On from sunset to sunrise (91.209)"],
+    ["S", "Source of electrical power", "Adequate for all installed equipment"]] },
+  { t: "kv", k: "Inoperative equipment", h: "Flying without an MEL", ref: "91.213(d)", rows: [
+    ["1. Check", "Is it required by the type certificate / equipment list or KOEL, by 91.205 or other rules for this flight, or by an AD? Any yes means you don't go."],
+    ["2. Remove or deactivate", "Deactivation that requires maintenance must be done by a mechanic."],
+    ["3. Placard", "Mark it \"INOPERATIVE\"."],
+    ["4. Decide", "Pilot or mechanic determines it is not a hazard."]] },
+  { t: "kv", k: "Private pilot privileges", h: "When you can and can't be paid", ref: "61.113", rows: [
+    ["Basic rule", "No acting as PIC for compensation or hire, or carrying passengers or property for hire"],
+    ["Cost sharing", "Pay at least your pro rata share of fuel, oil, airport fees, and rental"],
+    ["Business flights", "Allowed if only incidental to the job, with no passengers or property for hire"],
+    ["Charity flights", "Charitable, nonprofit, or community events under 91.146"],
+    ["Search and location", "Reimbursed for fuel, oil, airport fees, and rental when sanctioned by an agency or organization"],
+    ["Aircraft sales", "Demonstrate to a buyer with at least 200 hours logged"],
+    ["Towing", "Gliders or unpowered ultralights, if you meet 61.69"]] },
+  { t: "kv", k: "Added endorsements", h: "Training and a one-time logbook endorsement", ref: "61.31", rows: [
+    ["High-performance", "Engine of more than 200 horsepower"],
+    ["Complex", "Retractable gear, flaps, and a controllable-pitch propeller"],
+    ["Tailwheel", "Required for any tailwheel airplane"]] },
+  { t: "kv", k: "Pilot currency", h: "Numbers that go with the documents", ref: "Part 61 · 91.17", rows: [
+    ["Flight review", "Every 24 calendar months (61.56)"],
+    ["Passengers", "3 takeoffs and landings in the preceding 90 days, same category and class (61.57)"],
+    ["Night passengers", "3 full-stop landings, 1 hr after sunset to 1 hr before sunrise"],
+    ["3rd-class medical", "60 calendar months under age 40; 24 if 40 or older (61.23)"],
+    ["Address change", "Tell the FAA within 30 days (61.60)"],
+    ["Alcohol", "8 hours bottle to throttle, BAC under 0.04, not impaired (91.17)"]] },
+  { t: "kv", k: "The three nights", h: "Same word, three definitions", ref: "1.1 · 61.57 · 91.209", rows: [
+    ["Logging night", "End of evening civil twilight to start of morning civil twilight"],
+    ["Night currency", "1 hour after sunset to 1 hour before sunrise"],
+    ["Position lights", "Sunset to sunrise"]] }
+]},
+{ id: "planning", title: "Preflight & cross-country planning", acs: "ACS I.D", items: [
+  { t: "acro", k: "NWKRAFT", h: "Preflight action: become familiar with all available information", ref: "91.103", rows: [
+    ["N", "NOTAMs", ""],
+    ["W", "Weather reports & forecasts", ""],
+    ["K", "Known ATC traffic delays", ""],
+    ["R", "Runway lengths", "At airports of intended use"],
+    ["A", "Alternatives", "If the flight can't be completed as planned"],
+    ["F", "Fuel requirements", "VFR reserve: 30 min day, 45 min night, at normal cruise (91.151)"],
+    ["T", "Takeoff & landing distances", "From the POH performance charts"]] },
+  { t: "acro", k: "5 P", h: "Single-pilot check at each decision point", ref: "PHAK ch. 2", rows: [
+    ["P", "Plan", "Route, weather, fuel, timing"],
+    ["P", "Plane", "Airworthiness, equipment, performance"],
+    ["P", "Pilot", "IMSAFE, currency, proficiency"],
+    ["P", "Passengers", "Needs, comfort, pressure they add"],
+    ["P", "Programming", "Avionics and GPS set up correctly"]],
+    note: "Re-run it before takeoff, at the midpoint, before descent, and before entering the pattern." },
+  { t: "acro", k: "CIGARS", h: "Before takeoff", ref: "ACS II · POH", rows: [
+    ["C", "Controls", "Free and correct"],
+    ["I", "Instruments", "Set and checked"],
+    ["G", "Gas", "Fuel selector, quantity, and mixture"],
+    ["A", "Attitude", "Trim set for takeoff; some schools say Airplane secure"],
+    ["R", "Run-up", "Engine, magnetos, and carb heat, per your POH"],
+    ["S", "Safety", "Belts and doors secure, passengers briefed"]],
+    note: "Letters vary by school. Your POH checklist always comes first." },
+  { t: "acro", k: "GUMPS", h: "Before landing", ref: "ACS IV · POH", rows: [
+    ["G", "Gas", "Fuel selector and fuel pump as required"],
+    ["U", "Undercarriage", "Gear down, or confirm it's fixed"],
+    ["M", "Mixture", "Set for landing"],
+    ["P", "Propeller", "Set for landing, if adjustable"],
+    ["S", "Seat belts & switches", "Belts fastened, lights on"]],
+    note: "A final double-check on top of your POH checklist, not a replacement for it." },
+  { t: "kv", k: "Cruising altitudes", h: "East odd, west even", ref: "91.159", rows: [
+    ["0°–179° magnetic course", "Odd thousands + 500 ft (3,500, 5,500, 7,500)"],
+    ["180°–359° magnetic course", "Even thousands + 500 ft (4,500, 6,500, 8,500)"],
+    ["Applies", "Above 3,000 ft AGL in level cruise"]] }
+]},
+{ id: "weather", title: "Weather reports & forecasts", acs: "ACS I.C", items: [
+  { t: "table", wide: true, k: "Weather products", h: "What each one is and the detail examiners ask about", ref: "AIM 7-1 · FAA-H-8083-28", cls: "mono",
+    cols: ["Code", "Name", "Key detail"], rows: [
+    ["METAR", "Routine surface observation", "Issued hourly; SPECI is an unscheduled special report"],
+    ["TAF", "Terminal Aerodrome Forecast", "24 or 30 hours; covers 5 SM around the airport"],
+    ["PIREP", "Pilot report", "UA = routine, UUA = urgent"],
+    ["GFA", "Graphical Forecasts for Aviation", "Replaced the text Area Forecast (FA) in the lower 48"],
+    ["FB", "Winds & temperatures aloft", "No wind within 1,500 ft of station elevation, no temp within 2,500 ft; 9900 = light and variable"],
+    ["AIRMET", "Airmen's Meteorological Information", "Moderate hazards, mainly for light aircraft (see Sierra / Tango / Zulu)"],
+    ["SIGMET", "Significant Meteorological Information", "Non-convective, severe hazards to all aircraft"],
+    ["WST", "Convective SIGMET", "Thunderstorm hazards; issued hourly at 55 past"],
+    ["CWA", "Center Weather Advisory", "Short-term (up to 2 hr) from an ARTCC weather unit"],
+    ["ATIS", "Automatic Terminal Information Service", "Recorded airport info; new phonetic letter when updated"],
+    ["ASOS / AWOS", "Automated surface / weather observing systems", "Automated METARs; listen on the frequency in the Chart Supplement"]] },
+  { t: "acro", k: "STZ", h: "The three AIRMETs", ref: "AIM 7-1-6", rows: [
+    ["S", "Sierra", "IFR (ceiling under 1,000 ft and/or vis under 3 SM) over large areas; mountain obscuration"],
+    ["T", "Tango", "Moderate turbulence, sustained surface winds 30 kt or more, non-convective low-level wind shear"],
+    ["Z", "Zulu", "Moderate icing and freezing levels"]],
+    note: "SIGMET: severe icing, severe or extreme turbulence, dust or sand below 3 SM, volcanic ash. Convective SIGMET: tornadoes, hail ¾ in or larger, surface winds 50 kt or more, embedded or lines of thunderstorms." },
+  { t: "table", k: "Flight categories", h: "Ceiling and visibility", ref: "AIM 7-1", cls: "mono",
+    cols: ["Cat", "Ceiling", "Visibility"], rows: [
+    ["VFR", "Above 3,000 ft", "and above 5 SM"],
+    ["MVFR", "1,000–3,000 ft", "and/or 3–5 SM"],
+    ["IFR", "500 to under 1,000 ft", "and/or 1 to under 3 SM"],
+    ["LIFR", "Under 500 ft", "and/or under 1 SM"]] },
+  { t: "table", k: "METAR & TAF decode", h: "Codes you'll see in every report", ref: "AIM 7-1-28", cls: "mono",
+    cols: ["Code", "Meaning"], rows: [
+    ["SKC / CLR", "Clear (CLR: automated station, nothing below 12,000 ft)"],
+    ["FEW", "1/8 to 2/8 sky cover"],
+    ["SCT", "3/8 to 4/8"],
+    ["BKN", "5/8 to 7/8 (a ceiling)"],
+    ["OVC", "8/8 (a ceiling)"],
+    ["VV", "Vertical visibility into an obscuration (a ceiling)"],
+    ["– / +", "Light / heavy intensity"],
+    ["VC", "In the vicinity (5–10 SM)"],
+    ["TS / SH / FZ", "Thunderstorm / showers / freezing"],
+    ["RA / DZ / SN", "Rain / drizzle / snow"],
+    ["GR / GS / PL", "Hail / small hail or snow pellets / ice pellets"],
+    ["BR / FG", "Mist (vis 5/8 SM or more) / fog (under 5/8 SM)"],
+    ["HZ / FU", "Haze / smoke"],
+    ["CB / TCU", "Cumulonimbus / towering cumulus"],
+    ["AUTO / AO2", "Automated / has a precipitation sensor"],
+    ["RMK", "Remarks follow"],
+    ["P6SM", "TAF: visibility more than 6 SM"],
+    ["FM / TEMPO / BECMG / PROB30", "TAF change groups: from, temporary, becoming, 30% probability"],
+    ["WS", "TAF: low-level wind shear"]] },
+]},
+{ id: "wxtheory", title: "Weather theory & hazards", acs: "ACS I.C", items: [
+  { t: "table", wide: true, k: "Icing types", h: "Structural ice needs visible moisture and an airframe at or below 0 °C", ref: "PHAK ch. 12 · FAA-H-8083-28",
+    cols: ["Type", "Forms from", "What it's like"], rows: [
+    ["Clear", "Large supercooled drops: freezing rain, cumuliform clouds. Most common about 0 to −10 °C", "Hard, glossy, heavy, flows back before freezing. Hardest to remove; most dangerous"],
+    ["Rime", "Small supercooled droplets that freeze on contact: stratiform clouds. About −15 to −20 °C", "Rough, milky, brittle; traps air. Easier to remove"],
+    ["Mixed", "Both drop sizes at once. About −10 to −15 °C", "Rough and hard; builds fast"],
+    ["Frost", "Deposition on surfaces at or below freezing, often after clear, calm nights", "Remove before flight: sandpaper-rough frost can cut lift up to 30% and add 40% drag"]],
+    note: "Ice pellets (PL) at the surface mean freezing rain above you: there is a warmer layer aloft. Temperature ranges are typical, not limits." },
+  { t: "kv", k: "Carburetor ice", h: "Induction icing", ref: "PHAK ch. 7", rows: [
+    ["Most likely", "−7 to 21 °C (20–70 °F) with visible moisture or high humidity"],
+    ["Possible", "Up to 38 °C (100 °F) with humidity as low as 50%"],
+    ["Why", "Fuel vaporizing and the venturi's pressure drop can cool the air up to 70 °F"],
+    ["Fixed-pitch prop", "RPM drops, then the engine runs rough"],
+    ["Constant-speed prop", "Manifold pressure drops"],
+    ["Carb heat on", "RPM drops further at first, then rises as the ice melts"]] },
+  { t: "table", wide: true, k: "Fog types", h: "Fog is a cloud that begins within 50 ft of the surface", ref: "PHAK ch. 12",
+    cols: ["Type", "Forms when", "Watch for"], rows: [
+    ["Radiation", "Clear, calm, humid night; the ground cools the air to its dew point", "Low-lying areas; shallow; burns off after sunrise"],
+    ["Advection", "Moist air moves over colder ground or water", "Coastal areas; needs wind (up to about 15 kt); day or night; more persistent"],
+    ["Upslope", "Wind pushes moist, stable air up rising terrain and it cools", "Can be deep and widespread, e.g. east of the Rockies"],
+    ["Precipitation-induced", "Warm rain falls through cooler air and evaporates into it", "Ahead of warm fronts; low ceilings, possible icing; lasts a long time"],
+    ["Steam (sea smoke)", "Cold, dry air moves over warmer water", "Low-level turbulence and icing"],
+    ["Ice fog", "Air far below freezing (about −25 °F or colder); vapor turns straight to ice crystals", "Arctic regions"]],
+    note: "A narrowing temperature–dew point spread in the evening is your warning. METAR: BR (mist) is visibility 5/8 SM or more; FG (fog) is less." },
+  { t: "table", wide: true, k: "Fronts", h: "What arrives with each one", ref: "PHAK ch. 12",
+    cols: ["Front", "Clouds & weather", "After it passes"], rows: [
+    ["Cold", "Steep and fast. Cumuliform clouds, showers, thunderstorms, gusty winds; squall lines can form ahead", "Quick clearing, colder, good visibility, pressure rises"],
+    ["Warm", "Shallow and slow. Cirrus → altostratus → nimbostratus; steady rain, low ceilings, fog; freezing rain in winter", "Warmer and more humid, gradual clearing"],
+    ["Stationary", "Neither air mass advances", "Weather can linger for days"],
+    ["Occluded", "A cold front catches a warm front", "Mix of both; can hide embedded thunderstorms"]],
+    note: "Every frontal passage brings a temperature change, a wind shift (clockwise in the Northern Hemisphere), a pressure change, and a dew point change." },
+  { t: "table", k: "Stable vs. unstable air", h: "Read the air mass from its weather", ref: "PHAK ch. 12",
+    cols: ["Trait", "Stable", "Unstable"], rows: [
+    ["Clouds", "Stratiform", "Cumuliform"],
+    ["Precipitation", "Steady", "Showery"],
+    ["Visibility", "Fair to poor (haze, smoke)", "Good, except in showers"],
+    ["Air", "Smooth", "Turbulent"]] },
+  { t: "kv", k: "Cloud families", h: "By base height (AGL)", ref: "PHAK ch. 12", rows: [
+    ["Low: surface–6,500 ft", "Stratus, stratocumulus, nimbostratus"],
+    ["Middle: 6,500–20,000 ft", "Altostratus, altocumulus"],
+    ["High: above 20,000 ft", "Cirrus, cirrostratus, cirrocumulus (ice crystals)"],
+    ["Vertical development", "Cumulus, towering cumulus (TCU), cumulonimbus (CB)"],
+    ["Name decoder", "Cirro = high, alto = middle, nimbo/nimbus = rain, cumulo = heaped, strato = layered"],
+    ["Lenticular & rotor", "Signs of mountain wave turbulence"]] },
+  { t: "kv", k: "Thunderstorms", h: "Ingredients, life cycle, hazards", ref: "PHAK ch. 12 · AIM 7-1", rows: [
+    ["Needs", "Moisture, unstable air, a lifting action"],
+    ["Stages", "Cumulus (updrafts), mature (rain begins, up- and downdrafts, most violent), dissipating (downdrafts)"],
+    ["Types", "Single-cell (short-lived), multicell (cluster), supercell (rotating, most severe)"],
+    ["Squall line", "Non-frontal line of storms, often ahead of a cold front; the worst weather"],
+    ["Hazards", "Turbulence, hail, lightning, icing, wind shear, tornadoes, low ceilings"],
+    ["Avoid by", "At least 20 miles from severe storms; never fly under one or between close cells"]] },
+  { t: "kv", k: "Wind shear & microbursts", h: "Sudden change in wind speed or direction", ref: "AIM 7-1", rows: [
+    ["Found in", "Thunderstorms, fronts, temperature inversions, mountains, near the ground (LLWS)"],
+    ["Microburst", "Downdraft up to 6,000 fpm, under 1 mile across at cloud base, usually gone within 15 minutes"],
+    ["Encounter", "Headwind first (airspeed climbs), then downdraft, then tailwind (airspeed and lift drop). Most dangerous near the ground"],
+    ["Inversion", "Warm air above cool surface air: smooth but hazy, with shear at the top"]] },
+  { t: "kv", k: "Turbulence types", h: "Where bumps come from", ref: "PHAK ch. 12", rows: [
+    ["Convective", "Thermals from uneven heating; afternoons, under cumulus"],
+    ["Mechanical", "Wind over buildings, trees, and terrain; worse in strong wind"],
+    ["Mountain wave", "Strong wind across a ridge; lenticular and rotor clouds. Cross ridges at a 45° angle with altitude to spare"],
+    ["Clear air (CAT)", "High altitude near the jet stream, no visible cloud"],
+    ["Wake", "Wingtip vortices from other aircraft (see Airport & radio)"],
+    ["Intensity", "PIREP scale: light, moderate, severe, extreme"]] },
+  { t: "kv", k: "Atmosphere quick facts", h: "Numbers behind the weather", ref: "PHAK ch. 4 · 12", rows: [
+    ["Standard day", "15 °C (59 °F) and 29.92 inHg (1013.2 hPa) at sea level"],
+    ["Temperature lapse", "2 °C (3.5 °F) per 1,000 ft"],
+    ["Pressure lapse", "About 1 inHg per 1,000 ft (lower altitudes)"],
+    ["Cloud base", "Temp − dew point in °F ÷ 4.4 × 1,000 = base in ft AGL (°C: ÷ 2.5)"],
+    ["High pressure", "Clockwise, sinking air, usually fair weather (Northern Hemisphere)"],
+    ["Low pressure", "Counterclockwise, rising air, clouds and precipitation"],
+    ["Dew vs. frost", "Dew if the dew point is above freezing; frost if it is below"]] }
+]},
+{ id: "airspace", title: "Airspace", acs: "ACS I.E", items: [
+  { t: "table", wide: true, k: "Airspace classes", h: "Dimensions, entry rules, and VFR weather minimums", ref: "91.155 · Part 71 · AIM 3-2", cls: "mono",
+    cols: ["Class", "Typical dimensions", "To enter (VFR)", "Visibility · cloud clearance"], rows: [
+    ["A", "18,000 ft MSL to FL600", "IFR only", "N/A"],
+    ["B", "Surface to 10,000 MSL, tiered", "ATC clearance (\"cleared into Class Bravo\"); Mode C and ADS-B Out", "3 SM · clear of clouds"],
+    ["C", "Surface to 4,000 AGL; 5 NM core, 10 NM shelf", "Two-way radio contact established; Mode C and ADS-B Out", "3 SM · 500 below, 1,000 above, 2,000 horizontal"],
+    ["D", "Surface to 2,500 AGL, about 4 NM", "Two-way radio contact established", "3 SM · 500 below, 1,000 above, 2,000 horizontal"],
+    ["E < 10,000 MSL", "Surface, 700 AGL, or 1,200 AGL up to 17,999 MSL", "Nothing extra", "3 SM · 500 below, 1,000 above, 2,000 horizontal"],
+    ["E ≥ 10,000 MSL", "", "Mode C and ADS-B Out (above 2,500 AGL)", "5 SM · 1,000 below, 1,000 above, 1 SM horizontal"],
+    ["G ≤ 1,200 AGL", "Surface up to the floor of E", "Nothing", "Day 1 SM · clear of clouds. Night 3 SM · 500/1,000/2,000"],
+    ["G > 1,200 AGL, < 10,000 MSL", "", "Nothing", "Day 1 SM · 500/1,000/2,000. Night 3 SM · 500/1,000/2,000"],
+    ["G > 1,200 AGL, ≥ 10,000 MSL", "", "Nothing", "5 SM · 1,000 below, 1,000 above, 1 SM horizontal"]] },
+  { t: "kv", k: "3-152 and 5-111", h: "The two shorthand cloud rules", ref: "91.155", rows: [
+    ["3-152", "3 SM visibility; 1,000 ft above, 500 ft below, 2,000 ft horizontal"],
+    ["5-111", "5 SM visibility; 1,000 above, 1,000 below, 1 SM horizontal (at or above 10,000 MSL)"],
+    ["Basic VFR", "In a B, C, D, or E surface area: 1,000 ft ceiling and 3 SM visibility"],
+    ["Special VFR", "1 SM and clear of clouds with ATC clearance; at night needs instrument rating and an IFR airplane"]] },
+  { t: "acro", k: "MCPRAWN", h: "Special use airspace", ref: "AIM 3-4", rows: [
+    ["M", "MOA", "Military Operations Area; VFR allowed, ask ATC or FSS if it's active"],
+    ["C", "Controlled firing area", "Not charted; firing stops when aircraft approach"],
+    ["P", "Prohibited area", "No flight without the using agency's permission (P-56 over Washington, DC)"],
+    ["R", "Restricted area", "Need permission from the controlling agency when active (\"hot\")"],
+    ["A", "Alert area", "Heavy training activity; no permission needed, be alert"],
+    ["W", "Warning area", "Hazardous activity over water, starting 3 NM off the US coast"],
+    ["N", "National Security Area", "Voluntary avoidance requested; can be temporarily prohibited by NOTAM"]],
+    note: "Prohibited and restricted areas are regulatory (14 CFR Part 73). Warning areas, MOAs, alert areas, and controlled firing areas are nonregulatory." },
+  { t: "kv", k: "Other airspace areas", h: "Not special use, but still good to know", ref: "AIM 3-5 · 5-6", rows: [
+    ["TFR", "Temporary Flight Restriction: check NOTAMs every flight"],
+    ["ADIZ", "Air Defense Identification Zone: flight plan, transponder, two-way radio"],
+    ["SFRA", "Special Flight Rules Area (Washington, DC); special training required"],
+    ["MTR", "Military Training Route. IR = IFR, VR = VFR. 4 digits: all at or below 1,500 AGL; 3 digits: some segments above"],
+    ["TRSA", "Terminal Radar Service Area: participation voluntary"],
+    ["Wildlife areas", "Requested to stay above 2,000 ft AGL"]] },
+  { t: "kv", k: "Speed limits", h: "Indicated airspeed", ref: "91.117", rows: [
+    ["250 KIAS", "Below 10,000 ft MSL"],
+    ["200 KIAS", "At or below 2,500 AGL within 4 NM of a Class C or D primary airport"],
+    ["200 KIAS", "Beneath a Class B shelf or in a VFR corridor"]] },
+  { t: "kv", k: "Mode C & ADS-B Out", h: "Where they are required", ref: "91.215 · 91.225", rows: [
+    ["Class A, B, C", "Inside"],
+    ["Mode C veil", "Within 30 NM of a Class B primary airport, surface to 10,000 MSL"],
+    ["Above B or C", "Above the ceiling, up to 10,000 MSL"],
+    ["Class E", "At or above 10,000 MSL, except at or below 2,500 AGL"]] }
+]},
+{ id: "systems", title: "Performance, systems & aerodynamics", acs: "ACS I.F · I.G", items: [
+  { t: "table", wide: true, k: "V-speeds", h: "Know where each sits on the airspeed indicator", ref: "POH sec. 2 · 14 CFR 1.2", cls: "mono",
+    cols: ["Speed", "Meaning", "On the ASI / note"], rows: [
+    ["VSO", "Stall speed, landing configuration", "Bottom of the white arc"],
+    ["VS1", "Stall speed, specified configuration (usually clean)", "Bottom of the green arc"],
+    ["VR", "Rotation", ""],
+    ["VX", "Best angle of climb", "Most altitude per distance: clear obstacles"],
+    ["VY", "Best rate of climb", "Most altitude per time"],
+    ["VG", "Best glide", "Most distance per altitude lost (POH speed, not a 14 CFR term)"],
+    ["VA", "Design maneuvering speed", "Decreases as weight decreases; full abrupt control input allowed below it"],
+    ["VFE", "Max flap extended", "Top of the white arc"],
+    ["VNO", "Max structural cruising", "Top of the green arc; yellow arc above is smooth air only"],
+    ["VNE", "Never exceed", "Red line"],
+    ["VLE / VLO", "Max gear extended / gear operating", "Retractable gear only"]] },
+  { t: "kv", k: "Weight & balance", h: "The formulas and what CG does", ref: "PHAK ch. 10 · FAA-H-8083-1B", rows: [
+    ["Moment", "Weight × arm"],
+    ["Center of gravity", "Total moment ÷ total weight"],
+    ["Standard weights", "Avgas 6 lb/gal, oil 7.5 lb/gal"],
+    ["Forward CG", "More stable, higher stall speed, slower cruise, harder to flare"],
+    ["Aft CG", "Less stable, lower stall speed, faster cruise, harder stall and spin recovery"]],
+    note: "Use the weights and limits in your POH for your airplane." },
+  { t: "table", k: "Load factors", h: "Level, coordinated turns", ref: "PHAK ch. 5",
+    cols: ["Bank", "Load factor", "Stall speed"], rows: [
+    ["0°", "1.00 G", "None"],
+    ["30°", "1.15 G", "+7%"],
+    ["45°", "1.41 G", "+19%"],
+    ["60°", "2.00 G", "+41%"],
+    ["75°", "3.86 G", "+97%"]],
+    note: "Stall speed rises with the square root of the load factor. Category limits: normal +3.8 / −1.52 G, utility +4.4 / −1.76 G, acrobatic +6 / −3 G. Your POH sets the limits for your airplane." },
+  { t: "acro", k: "ICE-T", h: "Airspeed corrections, in order", ref: "PHAK ch. 8", rows: [
+    ["I", "Indicated", "Read straight off the ASI"],
+    ["C", "Calibrated", "Corrected for instrument and position error"],
+    ["E", "Equivalent", "Corrected for compressibility (negligible in trainers)"],
+    ["T", "True", "Corrected for nonstandard pressure and temperature"]],
+    note: "Then add wind to true airspeed to get groundspeed." },
+  { t: "acro", k: "5 altitudes", h: "Each one measured from something different", ref: "PHAK ch. 8", rows: [
+    ["I", "Indicated", "Altimeter reading with the current setting"],
+    ["P", "Pressure", "Altimeter set to 29.92 inHg"],
+    ["D", "Density", "Pressure altitude corrected for nonstandard temp; drives performance"],
+    ["T", "True", "Height above mean sea level (MSL)"],
+    ["A", "Absolute", "Height above the ground (AGL)"]],
+    note: "\"High to low, or hot to cold, look out below\": flying into lower pressure or colder air puts you lower than the altimeter shows." },
+  { t: "acro", k: "HHH", h: "Things that raise density altitude", ref: "PHAK ch. 11", rows: [
+    ["H", "High elevation", ""],
+    ["H", "Hot temperature", ""],
+    ["H", "High humidity", ""]],
+    note: "Result: longer takeoff roll, weaker climb, less engine power and propeller efficiency." },
+  { t: "acro", k: "TPSG", h: "Left-turning tendencies", ref: "PHAK ch. 5", rows: [
+    ["T", "Torque", "Engine turns the prop right, airplane rolls left"],
+    ["P", "P-factor", "Descending blade takes a bigger bite at high angles of attack"],
+    ["S", "Spiraling slipstream", "Slipstream hits the left side of the tail"],
+    ["G", "Gyroscopic precession", "Mostly when pitching a tailwheel airplane's tail up"]] },
+  { t: "acro", k: "PARE", h: "Spin recovery", ref: "AFH ch. 5", rows: [
+    ["P", "Power", "Idle"],
+    ["A", "Ailerons", "Neutral"],
+    ["R", "Rudder", "Full opposite the rotation"],
+    ["E", "Elevator", "Briskly forward to break the stall"]],
+    note: "When rotation stops, neutralize rudder and recover from the dive smoothly." },
+  { t: "acro", k: "ICPE", h: "Four-stroke engine cycle", ref: "PHAK ch. 7", rows: [
+    ["I", "Intake", "Suck"],
+    ["C", "Compression", "Squeeze"],
+    ["P", "Power", "Bang"],
+    ["E", "Exhaust", "Blow"]] },
+  { t: "kv", k: "Fuel grades", h: "Check color and grade when you sump", ref: "PHAK ch. 7", rows: [
+    ["100LL", "Blue"],
+    ["100", "Green"],
+    ["80", "Red"],
+    ["Jet A", "Clear to straw"],
+    ["Rule", "Use only the grades your POH approves; never a lower grade"]] },
+  { t: "kv", k: "Flight instruments", h: "What powers what (typical trainer)", ref: "PHAK ch. 8", rows: [
+    ["Pitot + static", "Airspeed indicator"],
+    ["Static only", "Altimeter, vertical speed indicator"],
+    ["Vacuum gyros", "Attitude indicator, heading indicator"],
+    ["Electric gyro", "Turn coordinator"],
+    ["Blocked pitot", "With drain hole also blocked, ASI acts like an altimeter"],
+    ["Blocked static", "Altimeter freezes, VSI reads zero; use alternate static"]] }
+]},
+{ id: "navigation", title: "Navigation & the compass", acs: "ACS VI", items: [
+  { t: "acro", k: "TVMDC", h: "From the chart to the compass", ref: "PHAK ch. 16", rows: [
+    ["T", "True", "True course ± wind correction angle = true heading"],
+    ["V", "Variation", "East is least, west is best: subtract east, add west"],
+    ["M", "Magnetic", "Magnetic heading"],
+    ["D", "Deviation", "From the compass correction card"],
+    ["C", "Compass", "The heading you actually fly"]] },
+  { t: "acro", k: "VDMONA", h: "Magnetic compass errors", ref: "PHAK ch. 8", rows: [
+    ["V", "Variation", "True north vs. magnetic north"],
+    ["D", "Deviation", "Airplane's own magnetic fields"],
+    ["M", "Magnetic dip", "Lines of force tilt toward the poles"],
+    ["O", "Oscillation", "Card swings in turbulence"],
+    ["N", "Northerly turning error", "See UNOS"],
+    ["A", "Acceleration error", "See ANDS"]] },
+  { t: "kv", k: "ANDS · UNOS", h: "Northern hemisphere compass behavior", ref: "PHAK ch. 8", rows: [
+    ["ANDS", "Accelerate North, Decelerate South: on an east or west heading, speeding up shows a turn to the north"],
+    ["UNOS", "Undershoot North, Overshoot South: roll out before the compass reaches a northerly heading, after it passes a southerly one"]] },
+  { t: "table", wide: true, k: "Sectional chart symbols", h: "Check these against your current chart's legend", ref: "FAA Chart Users' Guide · AIM 3-2",
+    cols: ["On the chart", "Meaning"], rows: [
+    ["Solid blue line", "Class B"],
+    ["Solid magenta line", "Class C"],
+    ["Dashed blue line", "Class D"],
+    ["Dashed magenta line", "Class E down to the surface"],
+    ["Faded magenta edge", "Class E starts at 700 ft AGL"],
+    ["Faded blue edge", "Class E starts at 1,200 ft AGL"],
+    ["100 over 30", "Class B or C top and floor, in hundreds of feet MSL: 10,000 and 3,000"],
+    ["[25] in a box", "Class D ceiling in hundreds of feet MSL: 2,500"],
+    ["Blue airport", "Has a control tower"],
+    ["Magenta airport", "No control tower"],
+    ["Star on an airport", "Rotating beacon"],
+    ["Ticks around an airport", "Fuel and services available"],
+    ["CT and a frequency", "Control tower frequency"],
+    ["Circled C", "Common Traffic Advisory Frequency"],
+    ["Airport data line", "Elevation, L if lighted, longest runway in hundreds of feet, then UNICOM frequency"],
+    ["Large number in a grid square", "Maximum Elevation Figure, in thousands and hundreds of feet MSL"],
+    ["Obstacle numbers", "Bold is MSL; in parentheses is AGL"],
+    ["Blue hatched border", "Prohibited, restricted, or warning area"],
+    ["Magenta hatched border", "MOA or alert area"]] }
+]},
+{ id: "human", title: "Human factors", acs: "ACS I.H", items: [
+  { t: "acro", k: "HHSH", h: "Four types of hypoxia", ref: "PHAK ch. 17", rows: [
+    ["H", "Hypoxic", "Not enough oxygen in the air (altitude)"],
+    ["H", "Hypemic (anemic)", "Blood can't carry oxygen: carbon monoxide, blood donation"],
+    ["S", "Stagnant", "Blood isn't moving: G-forces, cold, shock"],
+    ["H", "Histotoxic", "Cells can't use oxygen: alcohol, drugs"]] },
+  { t: "kv", k: "Supplemental oxygen", h: "Cabin pressure altitude", ref: "91.211", rows: [
+    ["Above 12,500 MSL", "Required crew uses O2 after 30 minutes (up to 14,000)"],
+    ["Above 14,000 MSL", "Required crew uses O2 the whole time"],
+    ["Above 15,000 MSL", "Every occupant must be provided O2"]] },
+  { t: "kv", k: "Scanning & senses", h: "Quick answers", ref: "AIM 8-1", rows: [
+    ["Traffic scan", "10° sectors, about 1 second each"],
+    ["Spatial disorientation", "Inner ear lies without a visual horizon; trust the instruments"],
+    ["Night vision", "Takes about 30 min to adapt; use off-center viewing"]] },
+  { t: "acro", k: "ICEFLAGS", h: "The eight named illusions", ref: "PHAK ch. 17", rows: [
+    ["I", "Inversion", "Climb to level flight abruptly: feels like tumbling backward"],
+    ["C", "Coriolis", "Head movement in a long turn: tumbling on another axis"],
+    ["E", "Elevator", "Updraft: feels like climbing, so you descend"],
+    ["F", "False horizon", "Sloping clouds or ground lights: wrong horizon"],
+    ["L", "Leans", "Abrupt roll-out from a slow bank: feels banked the other way"],
+    ["A", "Autokinesis", "Staring at one light in the dark: it seems to move"],
+    ["G", "Graveyard spiral / spin", "Long turn or spin recovery: feels level, or spinning the other way"],
+    ["S", "Somatogravic", "Rapid acceleration: feels nose-up, so you push down"]],
+    note: "Runway, terrain, weather, and lighting illusions on landing aren't in the word; they're in the landing table below." },
+  { t: "table", wide: true, k: "Vestibular illusions", h: "The inner ear fooled, usually with no outside visual reference", ref: "PHAK ch. 17",
+    cols: ["Illusion", "Cause", "What you feel and the danger"], rows: [
+    ["The leans", "Rolling level abruptly after a bank entered too slowly for the inner ear to sense", "You feel banked the other way and lean back into the original bank"],
+    ["Coriolis", "Moving your head abruptly during a prolonged, constant-rate turn", "Tumbling or rotation on a different axis; the most overwhelming illusion"],
+    ["Graveyard spiral", "A prolonged, coordinated, constant-rate turn", "Feels like wings level; you lose altitude, pull back, and tighten the spiral"],
+    ["Graveyard spin", "Recovering from a spin", "Feels like spinning the other way, so you re-enter the original spin"],
+    ["Somatogravic", "Rapid acceleration, such as on takeoff (deceleration does the opposite)", "Feels nose-up, so you push the nose down toward the ground"],
+    ["Inversion", "Abrupt change from a climb to straight and level", "Feels like tumbling backward, so you push the nose down abruptly"],
+    ["Elevator", "Abrupt vertical acceleration, such as an updraft (downdraft does the opposite)", "Feels like climbing, so you push into a descent"]] },
+  { t: "table", wide: true, k: "Visual & landing illusions", h: "Most of them make you feel too high, so you fly a dangerously low approach", ref: "PHAK ch. 17",
+    cols: ["Illusion", "Cause", "Effect"], rows: [
+    ["False horizon", "Sloping cloud tops, an obscured horizon, ground lights blending with stars", "You line the wings up with the wrong horizon"],
+    ["Autokinesis", "Staring at a single light against a dark background", "The light seems to move; you chase it"],
+    ["Narrow runway", "Runway narrower than you're used to", "Feels too high: you fly too low (a wide runway does the opposite)"],
+    ["Upsloping runway or terrain", "Runway or ground rising toward the far end", "Feels too high: you fly too low (downslope does the opposite)"],
+    ["Featureless terrain", "Black-hole night approach, water, or snow", "Feels too high: you fly too low"],
+    ["Rain on the windscreen", "Water refraction", "Feels too high: you fly too low"],
+    ["Haze", "Reduced contrast", "Runway looks farther away: you fly too low"],
+    ["Fog", "Flying into fog", "Feels like pitching up, so you steepen the approach abruptly"],
+    ["Ground lighting", "Bright runway lights, or a lit road or rail line", "Bright lights look closer, so you fly high; lit roads can be mistaken for a runway"]] },
+  { t: "kv", k: "Beating illusions", h: "What to do about them", ref: "PHAK ch. 17 · AIM 8-1", rows: [
+    ["Instruments", "Get instrument training and trust the instruments over your body"],
+    ["Head movement", "Avoid sudden head movements, especially in turns"],
+    ["Landing", "Know the runway's width and slope; use VASI/PAPI or an electronic glide path"],
+    ["Night", "Fly a normal pattern by reference to instruments, not just the lights"],
+    ["Fitness", "Fatigue, alcohol, and medication make disorientation worse"]] }
+]},
+{ id: "risk", title: "Risk management & decision-making", acs: "Risk elements, every task", items: [
+  { t: "acro", k: "PAVE", h: "Risk checklist for the whole flight", ref: "PHAK ch. 2", rows: [
+    ["P", "Pilot", "IMSAFE, currency, proficiency"],
+    ["A", "Aircraft", "Airworthy, equipped, fuel and performance for this trip"],
+    ["V", "enVironment", "Weather, terrain, airports, airspace, day or night"],
+    ["E", "External pressures", "Schedules, passengers, \"get-there-itis\""]] },
+  { t: "acro", k: "IMSAFE", h: "Am I fit to fly?", ref: "PHAK ch. 2 · 61.53", rows: [
+    ["I", "Illness", ""],
+    ["M", "Medication", "Prescription or over-the-counter"],
+    ["S", "Stress", ""],
+    ["A", "Alcohol", "8 hours, under 0.04 BAC"],
+    ["F", "Fatigue", ""],
+    ["E", "Emotion", "Some schools teach Eating"]] },
+  { t: "acro", k: "DECIDE", h: "Decision-making model", ref: "PHAK ch. 2", rows: [
+    ["D", "Detect", "Notice that something changed"],
+    ["E", "Estimate", "Decide whether you need to react"],
+    ["C", "Choose", "Pick a safe outcome"],
+    ["I", "Identify", "Actions that get you there"],
+    ["D", "Do", "Take the action"],
+    ["E", "Evaluate", "Check the result"]] },
+  { t: "acro", k: "3P", h: "Risk management loop", ref: "PHAK ch. 2", rows: [
+    ["P", "Perceive", "Spot the hazards (PAVE)"],
+    ["P", "Process", "Judge the risk (CARE)"],
+    ["P", "Perform", "Act on it (TEAM)"]] },
+  { t: "acro", k: "CARE", h: "Process a hazard", ref: "PHAK ch. 2", rows: [
+    ["C", "Consequences", ""],
+    ["A", "Alternatives", ""],
+    ["R", "Reality", "Of the situation, not wishful thinking"],
+    ["E", "External factors", ""]] },
+  { t: "acro", k: "TEAM", h: "Deal with the risk", ref: "PHAK ch. 2", rows: [
+    ["T", "Transfer", "Hand it to someone better placed"],
+    ["E", "Eliminate", "Cancel, delay, reroute"],
+    ["A", "Accept", "When the benefit outweighs the risk"],
+    ["M", "Mitigate", "Reduce it: more fuel, earlier departure, daylight"]] },
+  { t: "table", k: "Hazardous attitudes", h: "Five attitudes and their antidotes", ref: "PHAK ch. 2",
+    cols: ["Attitude", "Sounds like", "Antidote"], rows: [
+    ["Anti-authority", "\"Don't tell me.\"", "Follow the rules; they are usually right."],
+    ["Impulsivity", "\"Do it quickly.\"", "Not so fast. Think first."],
+    ["Invulnerability", "\"It won't happen to me.\"", "It could happen to me."],
+    ["Macho", "\"I can do it.\"", "Taking chances is foolish."],
+    ["Resignation", "\"What's the use?\"", "I'm not helpless. I can make a difference."]] }
+]},
+{ id: "emergency", title: "Emergencies & passengers", acs: "ACS IX · VI.D · II", items: [
+  { t: "acro", k: "ABCDE", h: "Engine failure in flight", ref: "AFH ch. 18", rows: [
+    ["A", "Airspeed", "Pitch for best glide"],
+    ["B", "Best place to land", "Into the wind if you can"],
+    ["C", "Checklist", "Restart: fuel selector, mixture, carb heat, mags, primer"],
+    ["D", "Declare", "121.5 or current ATC frequency; squawk 7700"],
+    ["E", "Execute", "Fly the airplane all the way to the landing"]] },
+  { t: "acro", k: "5 C's", h: "Lost procedures", ref: "ACS VI.D", rows: [
+    ["C", "Climb", "Better radio range, radar coverage, and view"],
+    ["C", "Communicate", "ATC, FSS, or 121.5"],
+    ["C", "Confess", "Tell them you're lost"],
+    ["C", "Comply", "Follow ATC's instructions"],
+    ["C", "Conserve", "Reduce power to save fuel"]],
+    note: "Some versions add Circle: stay over a known landmark." },
+  { t: "acro", k: "SAFETY", h: "Passenger briefing", ref: "91.107 · ACS II", rows: [
+    ["S", "Seat belts", "Fastened for taxi, takeoff, landing; shoulder harness; seat locked"],
+    ["A", "Air vents", "Location, operation, what to do if they feel sick"],
+    ["F", "Fire extinguisher", "Location and use"],
+    ["E", "Exits & emergency", "Doors, evacuation plan, survival gear"],
+    ["T", "Traffic & talking", "Point out traffic; quiet during critical phases"],
+    ["Y", "Your questions", "Speak up any time"]] },
+  { t: "kv", k: "Squawk codes", h: "And the rhymes that go with them", ref: "AIM 4-1 · ch. 6", rows: [
+    ["1200", "VFR"],
+    ["7500", "Hijack: \"seventy-five, taken alive\""],
+    ["7600", "Lost comms: \"seventy-six, radio fix\""],
+    ["7700", "Emergency: \"seventy-seven, going to heaven\""],
+    ["121.5 MHz", "Emergency (guard) frequency"],
+    ["Priorities", "Aviate, navigate, communicate"]] },
+  { t: "kv", k: "NTSB 830", h: "Accident and incident reporting", ref: "49 CFR 830", rows: [
+    ["Notify immediately", "Accident (death, serious injury, or substantial damage); flight control malfunction; crew member unable to act; in-flight fire; midair collision; over $25,000 non-aircraft property damage; overdue aircraft believed in an accident"],
+    ["Written report", "Within 10 days of an accident; 7 days if the aircraft is still missing; incidents only on request"],
+    ["NASA ASRS", "Voluntary safety report; file within 10 days of the event"]] }
+]},
+{ id: "airport", title: "Airport operations & radio", acs: "ACS III", items: [
+  { t: "table", k: "Light gun signals", h: "When the radio is dead", ref: "91.125", cols: ["Signal", "On the ground", "In the air"], rows: [
+    ["Steady green", "Cleared for takeoff", "Cleared to land"],
+    ["Flashing green", "Cleared to taxi", "Return for landing"],
+    ["Steady red", "Stop", "Give way, keep circling"],
+    ["Flashing red", "Taxi clear of runway", "Airport unsafe, do not land"],
+    ["Flashing white", "Return to starting point", "N/A"],
+    ["Red / green", "Extreme caution", "Extreme caution"]] },
+  { t: "kv", k: "Approach lights", h: "Glide path rhymes", ref: "AIM 2-1", rows: [
+    ["VASI", "Red over white, you're all right. Red over red, you're dead. White over white, high as a kite."],
+    ["PAPI", "2 white + 2 red = on glide path. More white = high, more red = low."],
+    ["PCL", "Pilot-controlled lighting: key mic 7 times in 5 sec = high, 5 = medium, 3 = low"]] },
+  { t: "kv", k: "Airport lights", h: "Beacons, runways, and taxiways", ref: "AIM 2-1", rows: [
+    ["Land airport beacon", "White and green"],
+    ["Military beacon", "Two quick white flashes between green"],
+    ["Water airport beacon", "White and yellow"],
+    ["Heliport beacon", "Green, yellow, and white"],
+    ["Beacon in daylight", "In a Class B, C, D, or E surface area, often means visibility under 3 miles and/or ceiling under 1,000 ft"],
+    ["Runway edge", "White; yellow on the last 2,000 ft or half of an instrument runway, whichever is less"],
+    ["Runway ends", "Green marks the threshold; red faces departing aircraft"],
+    ["Taxiways", "Blue edges, green centerline"],
+    ["REIL", "Pair of synchronized flashing lights beside the threshold"]] },
+  { t: "kv", k: "Common frequencies", h: "Confirm in the Chart Supplement", ref: "AIM 4-1 · 4-2 · 6-2", rows: [
+    ["121.5", "Emergency"],
+    ["122.2", "Common Flight Service frequency en route"],
+    ["122.9", "MULTICOM: self-announce with no tower, FSS, or UNICOM"],
+    ["122.7, 122.725, 122.8, 122.975, 123.0", "UNICOM"],
+    ["CTAF", "Varies by airport; it may be the UNICOM or tower frequency"]] },
+  { t: "kv", k: "Signs & markings", h: "Reading the airport surface", ref: "AIM 2-3", rows: [
+    ["Red, white text", "Mandatory: hold short, runway ahead"],
+    ["Black, yellow text", "Location: where you are"],
+    ["Yellow, black text", "Direction or destination: where to go"],
+    ["Hold-short line", "Solid side, stop. Dashed side, dash across."]] },
+  { t: "kv", k: "Radio & pattern", h: "Calls and patterns", ref: "AIM 4-2 · 4-3", rows: [
+    ["Every call", "Who you're calling, who you are, where you are, what you want"],
+    ["Pattern altitude", "Usually 1,000 ft AGL (TPA)"],
+    ["Standard entry", "45° to the downwind, abeam midfield"],
+    ["Turns", "Left traffic unless marked (segmented circle or Chart Supplement)"],
+    ["LAHSO", "Land and hold short: students should not accept it"]] },
+  { t: "kv", k: "Wake turbulence", h: "Wingtip vortices from other aircraft", ref: "AIM 7-4", rows: [
+    ["Strongest from", "Heavy, clean (gear and flaps up), slow aircraft"],
+    ["Behavior", "Sink several hundred fpm, weakening with time and distance; drift with the wind"],
+    ["Worst wind", "A light quartering tailwind keeps vortices on the runway"],
+    ["Landing behind", "Stay at or above their glide path; land beyond their touchdown point"],
+    ["Departing behind", "Rotate before their rotation point; climb above their path"]] }
+]},
+{ id: "numbers", title: "Numbers & rules at a glance", acs: "Quick reference", items: [
+  { t: "table", wide: true, k: "Time limits", h: "Every interval on one page", ref: "14 CFR",
+    cols: ["Item", "Limit", "Reg"], rows: [
+    ["Annual inspection", "12 calendar months", "91.409"],
+    ["100-hour inspection", "100 hours, if used for hire or instruction for hire", "91.409"],
+    ["Transponder check", "24 calendar months", "91.413"],
+    ["Altimeter / pitot-static (IFR)", "24 calendar months", "91.411"],
+    ["ELT inspection", "12 calendar months", "91.207"],
+    ["ELT battery", "1 cumulative hour of use or 50% of its useful life", "91.207"],
+    ["VOR check (IFR)", "30 days", "91.171"],
+    ["Aircraft registration", "7 years", "47.40"],
+    ["Flight review", "24 calendar months", "61.56"],
+    ["Passenger currency", "3 takeoffs and landings in 90 days", "61.57"],
+    ["3rd-class medical", "60 calendar months under 40; 24 if 40 or older", "61.23"],
+    ["Address change", "30 days", "61.60"],
+    ["Alcohol", "8 hours, BAC under 0.04", "91.17"],
+    ["Supplemental oxygen", "After 30 min above 12,500 ft MSL", "91.211"],
+    ["VFR fuel reserve", "30 min day, 45 min night", "91.151"],
+    ["Parachute repack", "180 days", "91.307"],
+    ["NTSB written report", "10 days after an accident (7 if aircraft still missing)", "49 CFR 830"],
+    ["NASA ASRS report", "10 days after the event", "AC 00-46"]] },
+  { t: "kv", k: "Minimum safe altitudes", h: "Except when taking off or landing", ref: "91.119", rows: [
+    ["Anywhere", "High enough to make an emergency landing without undue hazard to people or property"],
+    ["Congested areas", "1,000 ft above the highest obstacle within 2,000 ft horizontally"],
+    ["Other areas", "500 ft AGL"],
+    ["Open water or sparse areas", "No closer than 500 ft to any person, vessel, vehicle, or structure"]] },
+  { t: "kv", k: "Right of way", h: "Who gives way to whom", ref: "91.113", rows: [
+    ["Distress", "Has right of way over all other traffic"],
+    ["Different categories", "Balloon, then glider, then airship, then airplane or rotorcraft. Towing or refueling aircraft beat other engine-driven aircraft"],
+    ["Converging", "The aircraft on the right has right of way"],
+    ["Head-on", "Both turn right"],
+    ["Overtaking", "Pass well clear on the right"],
+    ["Landing", "Aircraft landing or on final have right of way; the lower of two does, but may not cut in"]] },
+  { t: "kv", k: "Aerobatics & parachutes", h: "Maneuvering rules", ref: "91.303 · 91.307 · 91.15", rows: [
+    ["No aerobatics", "Over congested areas or open-air crowds; in Class B, C, D, or E surface areas; within 4 NM of a federal airway centerline; below 1,500 ft AGL; with visibility under 3 SM"],
+    ["Parachutes", "Required for each occupant past 60° bank or 30° pitch, unless it's instruction from a CFI toward a certificate or rating"],
+    ["Dropping objects", "Allowed if it creates no hazard to people or property"]] },
+  { t: "kv", k: "Airspace numbers", h: "Heights and distances to recall fast", ref: "Part 71 · 91", rows: [
+    ["Class A", "Starts at 18,000 ft MSL"],
+    ["Class B", "Surface to about 10,000 MSL; Mode C veil 30 NM"],
+    ["Class C", "Surface to 4,000 AGL; 5 NM core, 10 NM shelf"],
+    ["Class D", "Surface to 2,500 AGL; about 4 NM"],
+    ["Class E floor", "700 AGL (faded magenta), 1,200 AGL (faded blue), or surface (dashed magenta)"],
+    ["Speed limits", "250 KIAS below 10,000 MSL; 200 KIAS near Class C/D and under Class B"],
+    ["Cruising altitudes", "Apply above 3,000 AGL"],
+    ["Traffic pattern", "Usually 1,000 ft AGL"],
+    ["Wildlife areas", "Stay above 2,000 ft AGL"]] }
+]},
+{ id: "websites", title: "Websites to know", acs: "Where the answers live", items: [
+  { t: "links", k: "Regulations & references", h: "The official sources examiners quote", rows: [
+    ["14 CFR (the FARs)", "ecfr.gov/current/title-14", "https://www.ecfr.gov/current/title-14", "Always-current regulations"],
+    ["AIM", "faa.gov: AIM", "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/", "Procedures, airspace, weather, radio"],
+    ["Handbooks (PHAK, AFH, weather)", "faa.gov: handbooks", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation", "Free PDFs of every FAA handbook"],
+    ["Private Pilot ACS", "faa.gov: ACS", "https://www.faa.gov/training_testing/testing/acs", "The standard your checkride follows"],
+    ["Advisory Circulars", "drs.faa.gov", "https://drs.faa.gov", "Search the document type Advisory Circulars"]] },
+  { t: "links", k: "Aircraft & maintenance", h: "Airworthiness research", rows: [
+    ["Airworthiness Directives", "drs.faa.gov", "https://drs.faa.gov", "Dynamic Regulatory System: search ADs by make and model (airframe, engine, prop, appliances)"],
+    ["Type Certificate Data Sheets", "drs.faa.gov", "https://drs.faa.gov", "Search the document type TCDS; shows required equipment and limits"],
+    ["Aircraft registration", "registry.faa.gov", "https://registry.faa.gov/aircraftinquiry", "Look up any N-number and its registration expiration date"]] },
+  { t: "links", k: "Weather & briefings", h: "Before every flight", rows: [
+    ["Aviation Weather Center", "aviationweather.gov", "https://aviationweather.gov", "METARs, TAFs, GFA, AIRMETs, SIGMETs, PIREPs, winds aloft"],
+    ["Flight Service briefing", "1800wxbrief.com", "https://www.1800wxbrief.com", "Official briefings and VFR flight plans; by phone at 1-800-WX-BRIEF"]] },
+  { t: "links", k: "NOTAMs, TFRs & charts", h: "Airspace and airport information", rows: [
+    ["NOTAMs", "notams.aim.faa.gov", "https://notams.aim.faa.gov/notamSearch/", "FAA NOTAM Search"],
+    ["TFRs", "tfr.faa.gov", "https://tfr.faa.gov", "Map and list of active TFRs"],
+    ["Special use airspace", "sua.faa.gov", "https://sua.faa.gov", "Whether MOAs and restricted areas are active"],
+    ["Sectional & TAC charts", "faa.gov: VFR charts", "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/vfr/", "Current charts, free from the FAA"],
+    ["Chart Supplement", "faa.gov: Chart Supplement", "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dafd/", "Airport details, frequencies, pattern info (formerly the A/FD)"],
+    ["Chart Users' Guide", "faa.gov: chart guide", "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/aero_guide/", "Every chart symbol explained"],
+    ["SkyVector", "skyvector.com", "https://skyvector.com", "Unofficial, free online sectionals for planning"]] },
+  { t: "links", k: "Your certificate & medical", h: "Paperwork for you, not the airplane", rows: [
+    ["IACRA", "iacra.faa.gov", "https://iacra.faa.gov", "Your checkride application (Form 8710-1)"],
+    ["MedXPress", "medxpress.faa.gov", "https://medxpress.faa.gov", "Fill out Form 8500-8 before your AME visit"],
+    ["BasicMed", "faa.gov: BasicMed", "https://www.faa.gov/licenses_certificates/airmen_certification/basic_med", "Requirements and approved online courses"],
+    ["Airmen inquiry", "amsrvs.registry.faa.gov", "https://amsrvs.registry.faa.gov/airmeninquiry/", "Look up pilot certificates and ratings"]] },
+  { t: "links", k: "Safety & reporting", h: "After something goes wrong, or to stay sharp", rows: [
+    ["NASA ASRS", "asrs.arc.nasa.gov", "https://asrs.arc.nasa.gov", "File within 10 days of an event"],
+    ["FAASTeam & WINGS", "faasafety.gov", "https://www.faasafety.gov", "Free safety courses; a WINGS phase can count as your flight review"],
+    ["NTSB", "ntsb.gov", "https://www.ntsb.gov", "Accident reports and how to notify (49 CFR 830)"]] }
+]}
+];
+
+// Abbreviation decoder.
+const G = [
+["AD","Airworthiness Directive: mandatory FAA safety fix"],["ACS","Airman Certification Standards"],["ADIZ","Air Defense Identification Zone"],
+["ADM","Aeronautical Decision-Making"],["ADS-B","Automatic Dependent Surveillance–Broadcast"],["AFH","Airplane Flying Handbook"],
+["AFM","Airplane Flight Manual"],["AGL","Above ground level"],["AIM","Aeronautical Information Manual"],
+["AIRMET","Airmen's Meteorological Information"],["ARTCC","Air Route Traffic Control Center (\"Center\")"],["ASOS","Automated Surface Observing System"],
+["ASRS","Aviation Safety Reporting System (NASA form)"],["ATC","Air Traffic Control"],["ATIS","Automatic Terminal Information Service"],
+["AWOS","Automated Weather Observing System"],["BAC","Blood alcohol concentration"],["CDI","Course Deviation Indicator"],
+["CFI","Certificated Flight Instructor"],["CFR","Code of Federal Regulations (14 CFR = the FARs)"],["CG","Center of gravity"],
+["CTAF","Common Traffic Advisory Frequency"],["CWA","Center Weather Advisory"],["DA","Density altitude"],
+["DME","Distance Measuring Equipment (slant range, NM)"],["DPE","Designated Pilot Examiner"],["ELT","Emergency Locator Transmitter (121.5 / 406 MHz)"],
+["ETA / ETE","Estimated time of arrival / en route"],["FAA","Federal Aviation Administration"],["FB","Winds and temperatures aloft forecast"],
+["FBO","Fixed Base Operator"],["FSS","Flight Service Station (1-800-WX-BRIEF)"],["GFA","Graphical Forecasts for Aviation"],
+["GPS","Global Positioning System"],["IFR","Instrument Flight Rules"],["IMC","Instrument meteorological conditions"],
+["KOEL","Kinds of Operations Equipment List"],["LAHSO","Land And Hold Short Operations"],["LIFR","Low IFR"],
+["LLWS","Low-level wind shear"],["MEF","Maximum Elevation Figure (per sectional quadrangle)"],["MEL","Minimum Equipment List"],
+["METAR","Aviation routine weather report"],["MOA","Military Operations Area"],["MSL","Mean sea level"],
+["MTR","Military Training Route"],["MVFR","Marginal VFR"],["NDB","Non-Directional Beacon (read with an ADF)"],
+["NM","Nautical mile"],["NOTAM","Notice to Airmen"],["NSA","National Security Area"],
+["NTSB","National Transportation Safety Board"],["OBS","Omni-Bearing Selector"],["PAPI","Precision Approach Path Indicator"],
+["PCL","Pilot-controlled lighting"],["PHAK","Pilot's Handbook of Aeronautical Knowledge"],["PIC","Pilot in command"],
+["PIREP","Pilot report"],["POH","Pilot's Operating Handbook"],["REIL","Runway End Identifier Lights"],
+["RNAV","Area navigation"],["SFRA","Special Flight Rules Area"],["SIGMET","Significant Meteorological Information"],
+["SM","Statute mile (visibility)"],["SRM","Single-Pilot Resource Management"],["STC","Supplemental Type Certificate"],
+["SUA","Special use airspace"],["SVFR","Special VFR"],["TAF","Terminal Aerodrome Forecast"],
+["TAS","True airspeed"],["TCDS","Type Certificate Data Sheet"],["TFR","Temporary Flight Restriction"],
+["TPA","Traffic pattern altitude"],["TRACON","Terminal Radar Approach Control (\"Approach\")"],["TRSA","Terminal Radar Service Area"],
+["UNICOM","Non-government airport advisory station"],["VASI","Visual Approach Slope Indicator"],["VFR","Visual Flight Rules"],
+["VMC","Visual meteorological conditions"],["VOR","VHF Omnidirectional Range"],["VORTAC","VOR plus military TACAN (gives DME)"],
+["WAAS","Wide Area Augmentation System (GPS accuracy)"],["WCA","Wind correction angle"],["Z (Zulu)","Coordinated Universal Time (UTC)"]
+];
+
+// Color samples shown beside facts that are about color, keyed by card and row label.
+const GREEN = "#2ea043", RED = "#e5383b", WHITE = "#ffffff", YELLOW = "#f2c230", BLUE = "#2f6fdc";
+const CHART_BLUE = "var(--chart-blue)", CHART_MAGENTA = "var(--chart-magenta)";
+const SWATCHES = {
+  "V-speeds": { VSO: [["dot", WHITE]], VS1: [["dot", GREEN]], VFE: [["dot", WHITE]], VNO: [["dot", GREEN], ["dot", YELLOW]], VNE: [["dot", RED]] },
+  "Flight categories": { VFR: [["dot", "#22a447"]], MVFR: [["dot", "#1f6fe5"]], IFR: [["dot", "#d93025"]], LIFR: [["dot", "#c026d3"]] },
+  "Fuel grades": { "100LL": [["dot", BLUE]], "100": [["dot", GREEN]], "80": [["dot", RED]], "Jet A": [["dot", "#e9dcae"]] },
+  "Light gun signals": { "Steady green": [["dot", GREEN]], "Flashing green": [["dot", GREEN]], "Steady red": [["dot", RED]], "Flashing red": [["dot", RED]], "Flashing white": [["dot", WHITE]], "Red / green": [["dot", RED], ["dot", GREEN]] },
+  "Airport lights": { "Land airport beacon": [["dot", WHITE], ["dot", GREEN]], "Military beacon": [["dot", WHITE], ["dot", WHITE], ["dot", GREEN]], "Water airport beacon": [["dot", WHITE], ["dot", YELLOW]], "Heliport beacon": [["dot", GREEN], ["dot", YELLOW], ["dot", WHITE]], "Runway edge": [["dot", WHITE], ["dot", YELLOW]], "Runway ends": [["dot", GREEN], ["dot", RED]], "Taxiways": [["dot", BLUE], ["dot", GREEN]] },
+  "Sectional chart symbols": { "Solid blue line": [["line", CHART_BLUE]], "Solid magenta line": [["line", CHART_MAGENTA]], "Dashed blue line": [["dash", CHART_BLUE]], "Dashed magenta line": [["dash", CHART_MAGENTA]], "Faded magenta edge": [["fade", CHART_MAGENTA]], "Faded blue edge": [["fade", CHART_BLUE]], "Blue airport": [["dot", CHART_BLUE]], "Magenta airport": [["dot", CHART_MAGENTA]], "Blue hatched border": [["hatch", CHART_BLUE]], "Magenta hatched border": [["hatch", CHART_MAGENTA]] },
+};
+
+// About section. The build also publishes PRIVACY as privacy-policy.html.
+const PRIVACY = {
+  effective: "November 6, 2026",
+  intro: "This privacy policy covers the Pilot Acronyms app for Android. The short version: the app does not collect, share, or sell any personal data.",
+  sections: [
+    ["What the app stores", "The app saves one setting on your device: the section you last opened, so it can reopen there. This is not personal data, and the app never sends it anywhere."],
+    ["What the app does not collect", "The app has no accounts, ads, analytics, or tracking. It does not access your contacts, location, camera, microphone, files, or any other personal or sensitive data. All of its content is built in, and it works offline."],
+    ["Who data is shared with", "No one, because the app does not collect any data to share."],
+    ["Links to other websites", "Links in the app open in your web browser. Those websites have their own privacy practices, which this policy does not cover."],
+    ["Google Play", "Google Play handles app downloads and updates under Google's own privacy policy. It may give the developer aggregated install and crash statistics, which do not identify you."],
+    ["Security", "No personal data is collected or transmitted, so none is held on any server. The saved setting stays in the app's private storage on your device."],
+    ["Retention and deletion", "The saved setting stays until you clear the app's storage or uninstall the app. Either one removes it. There is nothing else to delete."],
+    ["Children", "The app does not collect data from anyone, including children under 13."],
+    ["Changes to this policy", "If this policy changes, the new version will be posted at this policy's web address with a new effective date."],
+    ["Contact", "For questions about this policy, use the support email address on the app's Google Play listing."]
+  ]
+};
+const ABOUT = { id: "about", title: "About, disclaimer & privacy", acs: "Please read", items: [
+  { t: "legal", k: "Disclaimer", open: true, h: "Independent study aid", paras: [
+    "Pilot Acronyms is an independent study aid. It is not affiliated with, endorsed by, or representing the Federal Aviation Administration or any other government agency.",
+    "The content summarizes public government sources, and it may contain errors or fall out of date when rules change. Always confirm details against the current official sources below.",
+    "This app does not replace your flight instructor, your aircraft's POH or AFM, or an official weather briefing, and it must not be used for flight planning or in flight. Acronyms and mnemonics are study conventions, not FAA terms, and they vary between flight schools."] },
+  { t: "legal", k: "Official sources", open: true, h: "Where to verify the information in this app", links: [
+    ["14 CFR (Federal Aviation Regulations)", "https://www.ecfr.gov/current/title-14"],
+    ["49 CFR Part 830 (NTSB reporting)", "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-VIII/part-830"],
+    ["Aeronautical Information Manual", "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/"],
+    ["FAA handbooks (PHAK, AFH, Aviation Weather)", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation"],
+    ["Airman Certification Standards", "https://www.faa.gov/training_testing/testing/acs"],
+    ["Aviation Weather Center", "https://aviationweather.gov"]] },
+  { t: "legal", k: "Privacy policy", wide: true, open: true, h: `Effective ${PRIVACY.effective}`, paras: [PRIVACY.intro], sections: PRIVACY.sections }
+]};
+
+// Rendering.
+const SHORT = { aircraft: "Documents", planning: "Planning", weather: "Weather reports", wxtheory: "Ice, fog & hazards", airspace: "Airspace",
+  systems: "Aircraft systems", navigation: "Navigation", human: "Human factors", risk: "Risk & ADM", emergency: "Emergencies",
+  airport: "Airport & radio", numbers: "Key numbers", websites: "Websites", glossary: "Decoder", about: "About & privacy" };
+const ALL = [...S, { id: "glossary", title: "Abbreviation decoder", acs: "Charts, regs & radio", items: [] }, ABOUT];
+const size = s => s.id === "glossary" ? G.length : s.items.length;
+
+const SWATCH_CLASS = { dot: "sw", line: "sw-line", dash: "sw-line dash", fade: "sw-fade", hatch: "sw-hatch" };
+const swatch = (card, label) => (SWATCHES[card]?.[label] || []).map(([kind, c]) => `<span class="${SWATCH_CLASS[kind]}" style="--c:${c}" aria-hidden="true"></span>`).join("");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const CHEV = `<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5 7 9.5l4-4"/></svg>`;
+const BRAND = `<img src="data:image/webp;base64,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" alt="" width="40" height="40"><div><b>Pilot Acronyms</b><small>Memory aids &amp; key numbers</small></div>`;
+document.querySelectorAll("[data-brand]").forEach(el => el.innerHTML = BRAND);
+
+function body(it) {
+  if (it.t === "acro") return `<ul class="ac">${it.rows.map(([l, b, s]) =>
+    `<li class="qrow"><span class="ltr" aria-hidden="true">${esc(l)}</span><span class="x q"><b>${esc(b)}</b>${s ? `<small>${esc(s)}</small>` : ""}</span></li>`).join("")}</ul>`;
+  if (it.t === "kv") return `<ul class="kv">${it.rows.map(([a, b]) =>
+    `<li class="qrow"><span>${swatch(it.k, a)}${esc(a)}</span><span class="x q">${esc(b)}</span></li>`).join("")}</ul>`;
+  if (it.t === "links") return `<ul class="kv">${it.rows.map(([a, d, u, n]) =>
+    `<li class="qrow"><span>${esc(a)}</span><span class="x q"><a href="${esc(u)}" target="_blank" rel="noopener">${esc(d)}</a>${n ? `<small>${esc(n)}</small>` : ""}</span></li>`).join("")}</ul>`;
+  if (it.t === "legal") return `<div class="legal">${(it.paras || []).map(p => `<p>${esc(p)}</p>`).join("")}${
+    it.links ? `<ul>${it.links.map(([a, u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(a)}</a></li>`).join("")}</ul>` : ""}${
+    (it.sections || []).map(([h, p]) => `<h4>${esc(h)}</h4><p>${esc(p)}</p>`).join("")}</div>`;
+  return `<div class="tw"><table class="${it.cls || ""}"><thead><tr>${it.cols.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead><tbody>${
+    it.rows.map(r => `<tr class="qrow">${r.map((c, i) => `<td${i ? ' class="q"' : ""}>${i ? "" : swatch(it.k, c)}${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+const card = it => `<details class="card${it.wide ? " wide" : ""}"${it.open ? " open" : ""}><summary><span><span class="k${it.t === "acro" ? "" : " name"}">${esc(it.k)}</span><span class="sub">${it.h ? `<span>${esc(it.h)}</span>` : ""}${it.ref ? `<span class="ref">${esc(it.ref)}</span>` : ""}</span></span><span class="chev" aria-hidden="true">${CHEV}</span></summary><div class="body">${body(it)}${it.note ? `<p class="note">${esc(it.note)}</p>` : ""}</div></details>`;
+
+function pager(i) {
+  const p = ALL[i - 1], n = ALL[i + 1];
+  return `<nav class="pager" aria-label="Section pages">${p ? `<a href="#${p.id}" data-go="${p.id}"><small>Previous</small>← ${esc(SHORT[p.id])}</a>` : ""}${
+    n ? `<a class="next" href="#${n.id}" data-go="${n.id}"><small>Next</small>${esc(SHORT[n.id])} →</a>` : ""}</nav>`;
+}
+
+const main = document.getElementById("main");
+main.innerHTML = `<p class="results" id="results" role="status" hidden></p>` + ALL.map((s, i) => {
+  const unit = s.id === "glossary" ? "abbreviations" : "cards";
+  const content = s.id === "glossary"
+    ? `<div class="gl">${G.map(([a, b]) => `<div class="gi qrow"><b>${esc(a)}</b><span class="q">${esc(b)}</span></div>`).join("")}</div>`
+    : `<div class="cards">${s.items.map(card).join("")}</div>`;
+  return `<section class="sec" data-id="${s.id}" aria-labelledby="h-${s.id}" hidden><div class="sec-head"><div><h2 id="h-${s.id}">${esc(s.title)}</h2><p class="sec-meta">${esc(s.acs)} · ${size(s)} ${unit}</p></div>${
+    s.id === "glossary" ? "" : `<button class="btn expand" type="button">Expand all</button>`}</div>${content}${pager(i)}</section>`;
+}).join("");
+
+document.getElementById("sideNav").innerHTML = ALL.map(s => `<li><a href="#${s.id}" data-go="${s.id}"><span>${esc(SHORT[s.id])}</span><span class="n">${size(s)}</span></a></li>`).join("");
+document.getElementById("tabs").innerHTML = ALL.map(s => `<a href="#${s.id}" data-go="${s.id}">${esc(SHORT[s.id])}</a>`).join("");
+
+// Navigation, search, and quiz mode.
+const sections = [...main.querySelectorAll(".sec")];
+const results = document.getElementById("results");
+const q = document.getElementById("q"), quiz = document.getElementById("quiz");
+let current = ALL[0].id;
+sections.forEach(syncExpand);
+
+function syncExpand(sec) {
+  const btn = sec.querySelector(".expand"); if (!btn) return;
+  const cards = [...sec.querySelectorAll("details.card")];
+  btn.textContent = cards.every(d => d.open) ? "Collapse all" : "Expand all";
+}
+
+// Cards side by side share a height, except in a row where one is open.
+function alignRows() {
+  const rows = new Map();
+  for (const d of main.querySelectorAll(".sec:not([hidden]) details.card:not([hidden])")) {
+    const row = rows.get(d.offsetTop) || [];
+    row.push(d);
+    rows.set(d.offsetTop, row);
+  }
+  for (const row of rows.values()) {
+    const open = row.some(d => d.open);
+    row.forEach(d => d.classList.toggle("loose", open));
+  }
+}
+
+function show(id, scroll) {
+  if (!ALL.some(s => s.id === id)) id = ALL[0].id;
+  current = id;
+  if (q.value) { q.value = ""; search(); }
+  sections.forEach(sec => sec.hidden = sec.dataset.id !== id);
+  document.querySelectorAll("[data-go]").forEach(a => {
+    if (a.closest(".pager")) return;
+    a.dataset.go === id ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current");
+  });
+  const tab = document.querySelector(`#tabs [data-go="${id}"]`);
+  if (tab) tab.scrollIntoView({ block: "nearest", inline: "center" });
+  try { localStorage.setItem("last-section", id); } catch (e) {}
+  if (scroll) window.scrollTo({ top: 0 });
+  alignRows();
+}
+
+function search() {
+  const term = q.value.trim().toLowerCase();
+  main.classList.toggle("searching", !!term);
+  if (!term) {
+    main.querySelectorAll("[data-auto]").forEach(d => { d.open = false; delete d.dataset.auto; });
+    main.querySelectorAll(".card, .gi").forEach(el => el.hidden = false);
+    results.hidden = true;
+    sections.forEach(sec => { sec.hidden = sec.dataset.id !== current; syncExpand(sec); });
+    return;
+  }
+  let hits = 0;
+  sections.forEach(sec => {
+    let any = 0;
+    sec.querySelectorAll(".card, .gi").forEach(el => {
+      const match = el.textContent.toLowerCase().includes(term);
+      el.hidden = !match;
+      if (match) {
+        any++;
+        if (el.tagName === "DETAILS" && !el.open) { el.open = true; el.dataset.auto = "1"; }
+      }
+    });
+    hits += any;
+    sec.hidden = !any;
+  });
+  results.hidden = false;
+  results.innerHTML = hits
+    ? `<strong>${hits} ${hits === 1 ? "match" : "matches"}</strong> for “${esc(q.value.trim())}” across all sections. Clear the search to go back.`
+    : `No matches for “${esc(q.value.trim())}”. Try a shorter word, like “night” or “91.2”.`;
+}
+
+q.addEventListener("input", () => { search(); alignRows(); });
+q.addEventListener("keydown", e => { if (e.key === "Escape") { q.value = ""; search(); alignRows(); } });
+window.addEventListener("resize", alignRows);
+
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-go]");
+  if (go) { e.preventDefault(); show(go.dataset.go, true); return; }
+  const exp = e.target.closest(".expand");
+  if (exp) {
+    const sec = exp.closest(".sec"), cards = [...sec.querySelectorAll("details.card")];
+    const open = !cards.every(d => d.open);
+    cards.forEach(d => d.open = open);
+    syncExpand(sec);
+  }
+});
+main.addEventListener("toggle", e => { const sec = e.target.closest && e.target.closest(".sec"); if (sec) { syncExpand(sec); alignRows(); } }, true);
+
+quiz.addEventListener("click", () => {
+  const on = document.body.classList.toggle("quiz");
+  quiz.setAttribute("aria-pressed", on);
+  document.querySelectorAll(".qrow").forEach(r => { r.classList.remove("shown"); on ? r.setAttribute("tabindex", "0") : r.removeAttribute("tabindex"); });
+});
+main.addEventListener("click", e => {
+  if (!document.body.classList.contains("quiz")) return;
+  const r = e.target.closest(".qrow"); if (!r) return;
+  if (e.target.closest("a") && !r.classList.contains("shown")) e.preventDefault();
+  r.classList.toggle("shown");
+});
+main.addEventListener("keydown", e => {
+  if (!document.body.classList.contains("quiz") || (e.key !== "Enter" && e.key !== " ")) return;
+  const r = e.target.closest(".qrow"); if (r) { e.preventDefault(); r.classList.toggle("shown"); }
+});
+
+let start = location.hash.slice(1);
+if (!ALL.some(s => s.id === start)) { try { start = localStorage.getItem("last-section") || ""; } catch (e) { start = ""; } }
+show(start || ALL[0].id, false);
+</script>

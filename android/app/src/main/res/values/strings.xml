@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Pilot Acronyms</string>
+    <string name="title_activity_main">Pilot Acronyms</string>
+    <string name="package_name">com.kylek.pilotacronyms</string>
+    <string name="custom_url_scheme">com.kylek.pilotacronyms</string>
+</resources>

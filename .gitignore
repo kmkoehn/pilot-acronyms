@@ -1,0 +1,14 @@
+# Dependencies and generated files
+node_modules/
+www/
+*.log
+
+# Builds
+*.apk
+*.aab
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
