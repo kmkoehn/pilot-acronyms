@@ -1,5 +1,5 @@
 // Takes App Store screenshots of www/index.html in headless Chrome at Apple's required sizes:
-// 6.9-inch iPhone (1320 x 2868) and 13-inch iPad (2064 x 2752). Run `npm run web` first.
+// 6.3-inch iPhone (1206 x 2622), the size App Store Connect asks for first, and 13-inch iPad (2064 x 2752). Run `npm run web` first.
 // Usage: node scripts/store-shots.mjs
 import { mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { spawn } from "node:child_process";
@@ -15,7 +15,7 @@ const PORT = 9337;
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 const DEVICES = [
-  { name: "iphone", width: 440, height: 956, scale: 3 },
+  { name: "iphone", width: 402, height: 874, scale: 3 },
   { name: "ipad", width: 1032, height: 1376, scale: 2 },
 ];
 

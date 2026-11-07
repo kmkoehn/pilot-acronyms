@@ -15,7 +15,7 @@ Text for the App Store and Google Play listings. Screenshots are in `store/scree
 - **Promotional text** (170 max): Learn the acronyms, mnemonics, and key numbers private pilot students need, in one offline app. Quiz yourself with answers hidden until you tap.
 - **Keywords** (100 max): private,checkride,ground school,FAA,mnemonics,ARROW,IMSAFE,airspace,METAR,VFR,aviation,flight,ACS
 - **Review notes:** No sign-in or account is needed. All content is built in and works offline. Links to official FAA and government websites open in the browser.
-- **Screenshots:** `iphone-1.png` to `iphone-5.png` for the 6.9-inch iPhone, `ipad-1.png` to `ipad-5.png` for the 13-inch iPad.
+- **Screenshots:** `iphone-1.png` to `iphone-5.png` for the 6.3-inch iPhone, `ipad-1.png` to `ipad-5.png` for the 13-inch iPad.
 
 ## Google Play
 

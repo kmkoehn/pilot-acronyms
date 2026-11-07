@@ -14,7 +14,7 @@ Study app for private pilot students. The content and interface live in one page
 | `scripts/build-apk.mjs` | Runs the web build, syncs to Android, and builds the APK |
 | `scripts/store-shots.mjs` | Takes the App Store screenshots of `www/` in headless Chrome |
 | `store/icon-512.png` | The Google Play icon |
-| `store/screenshots/` | App Store screenshots: 6.9-inch iPhone and 13-inch iPad |
+| `store/screenshots/` | App Store screenshots: 6.3-inch iPhone and 13-inch iPad |
 | `store/listing.md` | Store listing text: subtitle, keywords, description, and URLs |
 | `privacy-policy.html`, `support.html` | The public privacy policy and support pages, generated from the page and served by GitHub Pages |
 | `android/` | The Android project |
