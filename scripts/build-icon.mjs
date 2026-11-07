@@ -78,6 +78,18 @@ const colorFile = join(res, "values/ic_launcher_background.xml");
 writeFileSync(colorFile, readFileSync(colorFile, "utf8").replace(/#[0-9A-Fa-f]{6}/, BACKGROUND));
 mkdirSync(join(root, "store"), { recursive: true });
 writeFileSync(join(root, "store/icon-512.png"), await visible(full, 512));
+
+// iPhone: one 1024 px icon with no transparency (iOS rounds the corners itself),
+// and a launch screen of the icon centered on its own navy.
+const iosAssets = join(root, "ios/App/App/Assets.xcassets");
+writeFileSync(join(iosAssets, "AppIcon.appiconset/AppIcon-512@2x.png"), await visible(full, 1024));
+const SPLASH = 2732, MARK = 640;
+const mark = await visible(full, MARK, "square");
+const layered = await sharp({ create: { width: SPLASH, height: SPLASH, channels: 3, background: BACKGROUND } })
+  .composite([{ input: mark, left: (SPLASH - MARK) / 2, top: (SPLASH - MARK) / 2 }]).png().toBuffer();
+const splash = await sharp(layered).removeAlpha().png().toBuffer(); // sharp applies composites last, so flatten separately
+for (const name of ["splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"])
+  writeFileSync(join(iosAssets, "Splash.imageset", name), splash);
 console.log("icons written");
 
 // Keep the logo in the chart's header the same as the app icon. Republish the chart afterward.

@@ -1,6 +1,6 @@
 # Pilot Acronyms
 
-Study app for private pilot students. The content and interface live in one page, which is published on the web and wrapped into an Android app with Capacitor.
+Study app for private pilot students. The content and interface live in one page, which is published on the web and wrapped into Android and iPhone apps with Capacitor.
 
 ## Where things are
 
@@ -10,11 +10,13 @@ Study app for private pilot students. The content and interface live in one page
 | `../Pilot-Acronyms.apk` | The latest Android build, written outside the repository |
 | `assets/icon-source.webp` | The original icon artwork |
 | `scripts/build-www.mjs` | Builds `www/` and `privacy-policy.html` from the page, with fonts bundled for offline use |
-| `scripts/build-icon.mjs` | Builds every Android icon, the store icon, and the logo in the page's header |
+| `scripts/build-icon.mjs` | Builds every Android and iPhone icon, the iPhone launch screen, the store icon, and the logo in the page's header |
 | `scripts/build-apk.mjs` | Runs the web build, syncs to Android, and builds the APK |
 | `store/icon-512.png` | The Google Play icon |
 | `privacy-policy.html` | The public privacy policy page, generated from the page |
 | `android/` | The Android project |
+| `ios/` | The iPhone project, built in the cloud by Codemagic |
+| `codemagic.yaml` | The Codemagic build workflows |
 
 `www/` and everything under `android/**/build` are generated, so don't edit them by hand.
 
@@ -33,6 +35,17 @@ npm run icons
 ```
 
 Republish the web chart after any change to the page.
+
+## iPhone builds
+
+iPhone apps can only be built on a Mac, so Codemagic builds them from this repository. Run `npx cap sync ios` after changing the page or icons, and commit the result. The iPhone version number comes from `package.json`.
+
+- **iOS simulator preview** builds the app for the iOS simulator and saves light and dark screenshots. It needs no Apple account.
+- **iOS TestFlight** signs the app and uploads it to TestFlight. Before it can run:
+  1. Join the Apple Developer Program.
+  2. Register the bundle ID `com.kylek.pilotacronyms` and create the app in App Store Connect.
+  3. Create an App Store Connect API key, add it in Codemagic under Team integrations, and name it `Pilot Acronyms` (the name `codemagic.yaml` uses).
+  4. Turn on automatic code signing for the key in Codemagic, so it can create the certificate and provisioning profile.
 
 ## Sources
 

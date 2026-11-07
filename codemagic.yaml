@@ -1,0 +1,96 @@
+# Cloud builds for the iPhone app. Codemagic reads this file from the GitHub repository.
+#
+#   ios-simulator-preview  Builds for the iOS simulator and saves light and dark screenshots.
+#                          Needs no Apple account, so it can run right away.
+#   ios-testflight         Signs the app and uploads it to TestFlight. Needs the Apple setup
+#                          described in README.md.
+workflows:
+  ios-simulator-preview:
+    name: iOS simulator preview
+    instance_type: mac_mini_m2
+    max_build_duration: 45
+    environment:
+      xcode: latest
+      node: 22
+    scripts:
+      - name: Install dependencies
+        script: npm ci
+      - name: Build the web files and copy them into the iPhone project
+        script: |
+          npm run web
+          npx cap sync ios
+      - name: Build for the iOS simulator
+        script: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug \
+            -sdk iphonesimulator -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath build/derived CODE_SIGNING_ALLOWED=NO build
+      - name: Open the app in a simulator and take screenshots
+        script: |
+          set -e
+          mkdir -p build/screenshots
+          # Pick the newest iPhone Pro simulator, or any iPhone if there's no Pro.
+          UDID=$(xcrun simctl list devices available -j | node -e '
+            let s = ""; process.stdin.on("data", d => s += d).on("end", () => {
+              const all = Object.entries(JSON.parse(s).devices)
+                .filter(([runtime]) => runtime.includes("iOS"))
+                .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }));
+              const phones = all.flatMap(([, list]) => list).filter(d => d.name.startsWith("iPhone"));
+              const pick = phones.filter(d => / Pro$/.test(d.name)).pop() || phones.pop();
+              console.log(pick.udid);
+            });')
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          xcrun simctl status_bar "$UDID" override --time 9:41 --batteryState charged --batteryLevel 100
+          APP=$(find build/derived/Build/Products -maxdepth 2 -name "App.app" | head -1)
+          xcrun simctl install "$UDID" "$APP"
+          shoot() {
+            xcrun simctl launch "$UDID" com.kylek.pilotacronyms
+            sleep 10
+            xcrun simctl io "$UDID" screenshot "build/screenshots/$1.png"
+            xcrun simctl terminate "$UDID" com.kylek.pilotacronyms || true
+          }
+          xcrun simctl ui "$UDID" appearance light
+          shoot light
+          xcrun simctl ui "$UDID" appearance dark
+          shoot dark
+    artifacts:
+      - build/screenshots/*.png
+
+  ios-testflight:
+    name: iOS TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: Pilot Acronyms # The name you give the App Store Connect API key in Codemagic
+    environment:
+      xcode: latest
+      node: 22
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.kylek.pilotacronyms
+    scripts:
+      - name: Install dependencies
+        script: npm ci
+      - name: Build the web files and copy them into the iPhone project
+        script: |
+          npm run web
+          npx cap sync ios
+      - name: Set up code signing
+        script: xcode-project use-profiles
+      - name: Set the version and build number
+        script: |
+          # Version comes from package.json; the build number is Codemagic's, which rises every build.
+          VERSION=$(node -p "require('./package.json').version")
+          sed -i '' -E \
+            -e "s/MARKETING_VERSION = [^;]+;/MARKETING_VERSION = $VERSION;/" \
+            -e "s/CURRENT_PROJECT_VERSION = [^;]+;/CURRENT_PROJECT_VERSION = $BUILD_NUMBER;/" \
+            ios/App/App.xcodeproj/project.pbxproj
+      - name: Build the signed app
+        script: xcode-project build-ipa --project ios/App/App.xcodeproj --scheme App
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true

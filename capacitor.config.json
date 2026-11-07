@@ -1,5 +1,8 @@
 {
   "appId": "com.kylek.pilotacronyms",
   "appName": "Pilot Acronyms",
-  "webDir": "www"
+  "webDir": "www",
+  "ios": {
+    "contentInset": "always"
+  }
 }
