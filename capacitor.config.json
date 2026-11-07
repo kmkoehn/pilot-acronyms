@@ -3,6 +3,6 @@
   "appName": "Pilot Acronyms",
   "webDir": "www",
   "ios": {
-    "contentInset": "always"
+    "contentInset": "never"
   }
 }

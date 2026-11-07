@@ -43,9 +43,13 @@ workflows:
           xcrun simctl status_bar "$UDID" override --time 9:41 --batteryState charged --batteryLevel 100
           APP=$(find build/derived/Build/Products -maxdepth 2 -name "App.app" | head -1)
           xcrun simctl install "$UDID" "$APP"
+          # The first launch on a fresh simulator is slow, so open the app once before taking screenshots.
+          xcrun simctl launch "$UDID" com.kmkoehn.pilotacronyms
+          sleep 20
+          xcrun simctl terminate "$UDID" com.kmkoehn.pilotacronyms || true
           shoot() {
             xcrun simctl launch "$UDID" com.kmkoehn.pilotacronyms
-            sleep 10
+            sleep 12
             xcrun simctl io "$UDID" screenshot "build/screenshots/$1.png"
             xcrun simctl terminate "$UDID" com.kmkoehn.pilotacronyms || true
           }

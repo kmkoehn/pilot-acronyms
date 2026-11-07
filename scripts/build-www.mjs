@@ -44,6 +44,12 @@ writeFileSync(join(www, "index.html"), `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=contain">
+<script>
+// On iPhone, draw behind the status bar and home indicator; the page pads itself with env(safe-area-inset-*)
+// and paints the status bar band in its own colors. Android keeps the system's padding.
+if (window.Capacitor && Capacitor.getPlatform && Capacitor.getPlatform() === "ios")
+  document.querySelector('meta[name="viewport"]').content = "width=device-width, initial-scale=1, viewport-fit=cover";
+</script>
 ${reset}
 ${page.replace(/<div class="app">/, "</head>\n<body>\n<div class=\"app\">")}
 </body>
